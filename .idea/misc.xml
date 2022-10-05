@@ -3,18 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/drawable/batman_background.xml" value="0.1845" />
-        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/drawable/central_menu_shape.xml" value="0.1845" />
-        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/drawable/ic_settings.xml" value="0.1955" />
-        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/menu/nav_menu.xml" value="0.2265625" />
-        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/menu/toolbar_menu.xml" value="0.18697916666666667" />
-        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/mipmap-anydpi-v26/batman_round.xml" value="0.1845" />
-        <entry key="..\:/kurs/kotlin/module19kotlin2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/kurs/kotlin/module19kotlin2/app/src/main/res/drawable/central_shape.xml" value="0.196" />
+        <entry key="..\:/kurs/kotlin/module19kotlin2/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/kurs/kotlin/module19kotlin2/app/src/main/res/menu/nav_menu.xml" value="0.18802083333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
