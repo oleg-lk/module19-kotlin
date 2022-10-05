@@ -5,7 +5,10 @@
       <map>
         <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/drawable/batman_background.xml" value="0.1845" />
         <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/drawable/central_menu_shape.xml" value="0.1845" />
-        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/layout/activity_main.xml" value="0.291213768115942" />
+        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/drawable/ic_settings.xml" value="0.1955" />
+        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/menu/nav_menu.xml" value="0.2265625" />
+        <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/menu/toolbar_menu.xml" value="0.18697916666666667" />
         <entry key="..\:/android/kotlin/module19-kotlin/app/src/main/res/mipmap-anydpi-v26/batman_round.xml" value="0.1845" />
         <entry key="..\:/kurs/kotlin/module19kotlin2/app/src/main/res/layout/activity_main.xml" value="0.1" />
       </map>

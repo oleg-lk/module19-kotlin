@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">module19-kotlin</string>
     <string name="posters_source">Картинки взяты с pexels.com</string>
-    <string name="main_screen_central_menu_btn1">МЕНЮ</string>
-    <string name="main_screen_central_menu_btn2">ИЗБРАННОЕ</string>
-    <string name="main_screen_central_menu_btn3">ПОСМОТРЕТЬ ПОЗЖЕ</string>
-    <string name="main_screen_central_menu_btn4">ПОДБОРКИ</string>
-    <string name="main_screen_central_menu_btn5">НАСТРОЙКИ</string>
+    <string name="main_screen_nav_menu_fav">ИЗБРАННОЕ</string>
+    <string name="main_screen_nav_menu_later">ПОСМОТРЕТЬ ПОЗЖЕ</string>
+    <string name="main_screen_nav_menu_selections">ПОДБОРКИ</string>
+    <string name="main_screen_setting_menu_title">НАСТРОЙКИ</string>
+    <string name="main_screen_title">Search</string>
 </resources>
