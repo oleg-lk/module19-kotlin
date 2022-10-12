@@ -104,7 +104,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:layout_editor_absoluteX="1dp">
-
+        <ImageView
+            android:background="@drawable/poster_shape"
+            android:layout_height="150dp"
+            android:layout_width="80dp"
+            />
     </androidx.gridlayout.widget.GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
