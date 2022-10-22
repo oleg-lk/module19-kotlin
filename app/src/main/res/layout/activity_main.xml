@@ -6,40 +6,168 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
-        android:background="#FFC107"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
-        app:layout_constraintVertical_bias="0.49"></LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#00BCD4"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/top_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/toolbar_menu"
+            app:navigationIcon="@drawable/ic_baseline_menu_open"
+            app:title="@string/main_screen_title" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_screen_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="1dp">
+        app:menu="@menu/nav_menu" />
 
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/frameLayout2"
+    <View
+        android:id="@+id/central_view"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#3F51B5"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp">
+        android:layout_height="match_parent"
+        android:background="@drawable/central_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </View>
 
-    </FrameLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/main_screen_up_menu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_screen_up_menu_height"
+        android:layout_margin="10dp"
+        android:elevation="15dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/main_screen_up_menu_color"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/main_screen_posters_width"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/lotr" />
+
+            <ImageView
+                android:layout_width="@dimen/main_screen_posters_width"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mib" />
+
+            <ImageView
+                android:layout_width="@dimen/main_screen_posters_width"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/alita" />
+
+            <ImageView
+                android:layout_width="@dimen/main_screen_posters_width"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/thor" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:autoLink="web"
+        android:clickable="true"
+        android:minHeight="48dp"
+        android:text="@string/posters_source"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_screen_up_menu" />
+
+    <GridLayout
+        android:layoutAnimation="@anim/posters_animation_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:paddingVertical="10dp"
+        android:useDefaultMargins="true"
+        android:rowCount="2"
+        android:columnCount="2"
+        app:layout_constraintBottom_toTopOf="@+id/main_screen_nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:useDefaultMargins="true">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="180dp"
+            android:layout_height="150dp"
+            app:cardCornerRadius="20dp"
+            android:clickable="true"
+            android:id="@+id/central_poster1"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@drawable/poster_shape"
+                android:src="@drawable/poster1" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/central_poster2"
+            android:layout_width="180dp"
+            android:layout_height="150dp"
+            app:cardCornerRadius="20dp"
+            android:clickable="true">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@drawable/poster_shape"
+                android:src="@drawable/poster2" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/central_poster3"
+            android:layout_width="180dp"
+            android:layout_height="150dp"
+            app:cardCornerRadius="20dp"
+            android:clickable="true">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@drawable/poster_shape"
+                android:src="@drawable/poster3" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/central_poster4"
+            android:clickable="true"
+            android:layout_width="180dp"
+            android:layout_height="150dp"
+            app:cardCornerRadius="20dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@drawable/poster_shape"
+                android:src="@drawable/poster4" />
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
