@@ -1,119 +1,93 @@
 package ru.oleshchuk.module19_kotlin
 
-import android.animation.*
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Resources
 import android.os.Bundle
-import android.view.View
-import android.view.animation.*
-import android.widget.Toast
-import androidx.cardview.widget.CardView
-import androidx.viewbinding.ViewBinding
-import androidx.viewbinding.ViewBindings
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import ru.oleshchuk.module19_kotlin.adapter.FilmAdapter
 import ru.oleshchuk.module19_kotlin.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView as BottomNavigationView
+import ru.oleshchuk.module19_kotlin.decor.FilmDecoration
+import ru.oleshchuk.module19_kotlin.model.Film
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private fun initListeners() {
+    private fun initFilms() {
+        val films = arrayListOf<Film>(
+            Film(
+                "Доктор Ноу (фильм, 1962)  Dr. No",
+                R.drawable.film1,
+                "1962, боевик, приключения, триллер, Великобритания, США",
+                1, 50
+            ),
+            Film(
+                "Лок (фильм, 2013)  Locke",
+                R.drawable.film2,
+                "2013, драма, Великобритания, США",
+                1, 25
+            ),
+            Film(
+                "Мастер (фильм, 2012)",
+                R.drawable.film3,
+                "The Master 2012, драма, США",
+                2, 18
+            ),
+            Film(
+                "Меланхолия (фильм, 2011)",
+                R.drawable.film4,
+                "Melancholia 2011, драма, фантастика, Дания, Швеция, Франция, Германия",
+                2, 15
+            ),
+            Film(
+                "Темный рыцарь (фильм, 2008)",
+                R.drawable.film5,
+                "The Dark Knight 2008, боевик, драма, триллер, США, Великобритания",
+                2, 32
+            ),
+            Film(
+                "Властелин Колец: Две Крепости (фильм, 2002)",
+                R.drawable.film6,
+                "The Lord of the Rings: The Two Towers 2002, боевик, драма, приключения, США, Новая Зеландия",
+                3, 21
+            ),
+            Film(
+                "Интерстеллар (фильм, 2014)",
+                R.drawable.film7,
+                "Interstellar 2014, драма, приключения, фантастика, США, Великобритания, Канада",
+                2, 49
+            ),
+            Film(
+                "Пианист (фильм, 2002)",
+                R.drawable.film8,
+                "The Pianist 2002, биографический, драма, музыка, Франция, Польша, Германия, Великобритания",
+                2, 30
+            )
+        )
+        val filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener{
+            override fun onClik() {
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-
-        binding.topAppBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.main_screen_setting_menu -> {
-                    Toast.makeText(this, R.string.main_screen_setting_menu_title, Toast.LENGTH_LONG)
-                        .show()
-                    true
-                }
-                else -> false
             }
-        }
+        })
+        /*set decorations*/
+        val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        ResourcesCompat.getDrawable(resources, R.drawable.layer_divider, null)?.let {
 
-        findViewById<BottomNavigationView>(R.id.main_screen_nav_view).setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_menu_fav -> {
-                    Toast.makeText(this,
-                        R.string.main_screen_nav_menu_fav,
-                        Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.nav_menu_later -> {
-                    Toast.makeText(this,
-                        R.string.main_screen_nav_menu_later,
-                        Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.nav_menu_selections -> {
-                    Toast.makeText(this,
-                        R.string.main_screen_nav_menu_selections,
-                        Toast.LENGTH_SHORT).show()
-                    true
-                }
-                else -> false
-            }
+            dividerItemDecoration.setDrawable(it)
+            binding.filmsView.addItemDecoration(dividerItemDecoration)
         }
-    }
-
-    private fun onSelectPoster(){
-
-        val anim = AnimatorInflater.loadStateListAnimator(this, R.animator.poster_slection_animator)
-        findViewById<CardView>(R.id.central_poster1).stateListAnimator = anim
-        val poster2 = findViewById<CardView>(R.id.central_poster2)
-        val poster3 = findViewById<CardView>(R.id.central_poster3)
-        val poster4 = findViewById<CardView>(R.id.central_poster4)
-        poster2.setOnClickListener {
-            itView->
-            itView.animate()
-                .setDuration(200)
-                .scaleX(0.8F)
-                .scaleY(0.8F)
-                .setListener(object : Animator.AnimatorListener{
-                    override fun onAnimationStart(p0: Animator?) {
-                    }
-                    override fun onAnimationEnd(p0: Animator?) {
-                        itView.scaleX = 1F
-                        itView.scaleY = 1F
-                    }
-                    override fun onAnimationCancel(p0: Animator?) {
-                    }
-                    override fun onAnimationRepeat(p0: Animator?) {
-                    }
-                })
-                .start()
-        }
-        val animation3 = AnimationUtils.loadAnimation(this, R.anim.central_poster_animation)
-        poster3.setOnClickListener {
-            it.startAnimation(animation3)
-        }
-        val anim4 = ValueAnimator.ofFloat(1F, 0.6F)
-        val anim5 = ValueAnimator.ofFloat(0.6F, 1F )
-        anim4.duration = 500
-        anim4.interpolator = AnticipateInterpolator()
-        anim4.addUpdateListener {
-            poster4.scaleX = it.animatedValue as Float
-            poster4.scaleY = it.animatedValue as Float
-        }
-        anim5.duration = 500
-        anim5.interpolator = OvershootInterpolator()
-        anim5.addUpdateListener {
-            poster4.scaleX = it.animatedValue as Float
-            poster4.scaleY = it.animatedValue as Float
-        }
-        val animSet = AnimatorSet()
-        poster4.setOnClickListener {
-            animSet.play(anim4)
-            animSet.play(anim5).after(anim4)
-            animSet.start()
-        }
+        //val filmDecoration = FilmDecoration(0)
+        //binding.filmsView.addItemDecoration(filmDecoration)
+        /*set adapter*/
+        binding.filmsView.adapter = filmAdapter
+        filmAdapter.addFilms(films)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        initListeners()
-        onSelectPoster()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initFilms()
     }
 }
