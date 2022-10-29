@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.oleshchuk.module19_kotlin.R
 import ru.oleshchuk.module19_kotlin.databinding.FilmItemBinding
+import ru.oleshchuk.module19_kotlin.diff.FilmDiff
 import ru.oleshchuk.module19_kotlin.model.Film
 
 class FilmAdapter( private val onItemClickListener: FilmAdapter.OnItemClickListener) : RecyclerView.Adapter<FilmAdapter.FilmHolder>() {
@@ -27,9 +29,11 @@ class FilmAdapter( private val onItemClickListener: FilmAdapter.OnItemClickListe
     }
 
     fun addFilms(newFilms: ArrayList<Film>){
+        val diffResult = DiffUtil.calculateDiff(FilmDiff(films, newFilms))
         films.clear()
         films.addAll(newFilms)
-        notifyDataSetChanged()
+        //notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmHolder {
