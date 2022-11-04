@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.oleshchuk.module19_kotlin.R
@@ -25,7 +26,7 @@ class FilmAdapter( private val onItemClickListener: FilmAdapter.OnItemClickListe
     }
 
     interface OnItemClickListener{
-        fun onClik()
+        fun onClik(fil: Film)
     }
 
     fun addFilms(newFilms: ArrayList<Film>){
@@ -42,6 +43,9 @@ class FilmAdapter( private val onItemClickListener: FilmAdapter.OnItemClickListe
 
     override fun onBindViewHolder(holder: FilmHolder, position: Int) {
         holder.bind(films[position])
+        holder.itemView.findViewById<CardView>(R.id.film_card).setOnClickListener {
+            onItemClickListener.onClik(films[position])
+        }
     }
 
     override fun getItemCount(): Int {

@@ -1,13 +1,12 @@
 package ru.oleshchuk.module19_kotlin
 
-import android.content.res.Resources
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import ru.oleshchuk.module19_kotlin.adapter.FilmAdapter
 import ru.oleshchuk.module19_kotlin.databinding.ActivityMainBinding
-import ru.oleshchuk.module19_kotlin.decor.FilmDecoration
 import ru.oleshchuk.module19_kotlin.model.Film
 
 class MainActivity : AppCompatActivity() {
@@ -66,8 +65,12 @@ class MainActivity : AppCompatActivity() {
             )
         )
         val filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener{
-            override fun onClik() {
-
+            override fun onClik(film: Film) {
+                var bundle = Bundle()
+                bundle.putParcelable("film", film)
+                val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+                intent.putExtras(bundle)
+                startActivity(intent)
             }
         })
         /*set decorations*/
