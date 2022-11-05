@@ -5,4 +5,8 @@
     <dimen name="main_screen_central_menu_corner">45dp</dimen>
     <dimen name="main_screen_up_menu_height">100dp</dimen>
     <dimen name="main_screen_posters_width">100dp</dimen>
+    <dimen name="film_card_height">180dp</dimen>
+    <dimen name="film_image_width">160dp</dimen>
+    <dimen name="film_card_corner_radius">10dp</dimen>
+    <dimen name="details_appbar_height">250dp</dimen>
 </resources>

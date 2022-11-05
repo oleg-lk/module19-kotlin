@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">module19-kotlin</string>
-    <string name="posters_source">Картинки взяты с pexels.com</string>
+    <string name="app_name">module-kotlin</string>
+    <string name="posters_source">Картинки взяты с https://wwww.pexels.com</string>
     <string name="main_screen_nav_menu_fav">ИЗБРАННОЕ</string>
     <string name="main_screen_nav_menu_later">ПОСМОТРЕТЬ ПОЗЖЕ</string>
     <string name="main_screen_nav_menu_selections">ПОДБОРКИ</string>
