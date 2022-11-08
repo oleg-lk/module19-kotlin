@@ -26,7 +26,7 @@ class FilmAdapter( private val onItemClickListener: FilmAdapter.OnItemClickListe
     }
 
     interface OnItemClickListener{
-        fun onClik(fil: Film)
+        fun onClik(film: Film)
     }
 
     fun addFilms(newFilms: ArrayList<Film>){
