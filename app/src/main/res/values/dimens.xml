@@ -11,5 +11,5 @@
     <dimen name="details_appbar_height">250dp</dimen>
     <dimen name="height_view_resource">48dp</dimen>
     <dimen name="text_size_view_resource">18sp</dimen>
-    <dimen name="fab_details_share_margin">18dp</dimen>
+    <dimen name="fab_details_margin">18dp</dimen>
 </resources>
