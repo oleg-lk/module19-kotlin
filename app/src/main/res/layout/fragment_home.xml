@@ -12,8 +12,8 @@
         android:id="@+id/main_screen_up_menu"
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_screen_up_menu_height"
-        android:layout_margin="15dp"
-        android:elevation="15dp"
+        android:layout_margin="5dp"
+        app:cardElevation="5dp"
         app:cardBackgroundColor="@color/teal_200"
         android:outlineAmbientShadowColor="@android:color/holo_red_light"
         android:outlineSpotShadowColor="@android:color/holo_red_light"
@@ -55,13 +55,14 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txViewResource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:height="22dp"
+        android:height="@dimen/height_view_resource"
+        android:gravity="center"
         android:autoLink="web"
         android:clickable="true"
+        android:textSize="@dimen/text_size_view_resource"
         android:textColorLink="@android:color/background_dark"
         android:text="@string/posters_source"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +77,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/txViewResource"
         tools:listitem="@layout/film_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

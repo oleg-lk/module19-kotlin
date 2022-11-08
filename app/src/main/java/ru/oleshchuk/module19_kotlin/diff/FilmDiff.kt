@@ -21,8 +21,6 @@ class FilmDiff(private val oldFilms: List<Film>, private val newFilms : List<Fil
         val newFilm = newFilms[newItemPosition]
         return oldFilm.desc == newFilm.desc &&
                oldFilm.name == newFilm.name &&
-               oldFilm.posterId == newFilm.posterId &&
-               oldFilm.tmHours == newFilm.tmHours &&
-               oldFilm.tmMin == newFilm.tmMin
+               oldFilm.posterId == newFilm.posterId
     }
 }

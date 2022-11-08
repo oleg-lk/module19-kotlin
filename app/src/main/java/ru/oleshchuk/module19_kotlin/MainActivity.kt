@@ -3,15 +3,13 @@ package ru.oleshchuk.module19_kotlin
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import ru.oleshchuk.module19_kotlin.constants.FragmentTags
 import ru.oleshchuk.module19_kotlin.databinding.ActivityMainBinding
 import ru.oleshchuk.module19_kotlin.model.Film
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    companion object{
-        const val home_fragment_tag = "HomeFragment"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.central_view, HomeFragment(), home_fragment_tag)
+            .add(R.id.central_view, HomeFragment(), FragmentTags.HOME_FRAGMENT_TAG)
             .addToBackStack(null)
             .commit()
     }
@@ -31,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 binding.mainLayout,
                 "Are you sure you want to exit?", Snackbar.LENGTH_INDEFINITE
             )
-            snackbar.setAnchorView(binding.mainScreenNavView)
+            snackbar.anchorView = binding.mainScreenNavView
             snackbar.setAction("Yes") {
                 finish()
                 super.onBackPressed()
