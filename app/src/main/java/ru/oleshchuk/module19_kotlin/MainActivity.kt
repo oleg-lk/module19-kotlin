@@ -1,7 +1,6 @@
 package ru.oleshchuk.module19_kotlin
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import ru.oleshchuk.module19_kotlin.constants.Args
@@ -47,9 +46,10 @@ class MainActivity : AppCompatActivity() {
         if(supportFragmentManager.backStackEntryCount == 1) {
             val snackbar = Snackbar.make(
                 binding.mainLayout,
-                "Are you sure you want to exit?", Snackbar.LENGTH_INDEFINITE
+                getString(R.string.ask_exit),
+                Snackbar.LENGTH_INDEFINITE
             )
-            snackbar.setAction("Yes") {
+            snackbar.setAction(getString(R.string.yes)) {
                 finish()
                 super.onBackPressed()
             }
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     //open fragment on film
     fun openFilmDetails(film: Film){
-        var bundle = Bundle()
+        val bundle = Bundle()
         bundle.putParcelable(Args.FILM_ARG, film)
         val detailsFragment = DetailsFragment()
         detailsFragment.arguments = bundle

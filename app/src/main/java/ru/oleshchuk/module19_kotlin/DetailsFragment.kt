@@ -1,7 +1,6 @@
 package ru.oleshchuk.module19_kotlin
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +21,6 @@ class DetailsFragment : Fragment() {
     ): View? {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
-        //return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     /*set type image*/
@@ -38,7 +36,7 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var film = arguments?.getParcelable<Film>(Args.FILM_ARG)
+        val film = arguments?.getParcelable<Film>(Args.FILM_ARG)
         film?.apply {
             binding.centralPoster.setImageResource(posterId)
             binding.detailsDesc.text = desc
