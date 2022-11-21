@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             val snackbar = Snackbar.make(
                 binding.mainLayout,
                 getString(R.string.ask_exit),
-                Snackbar.LENGTH_INDEFINITE
+                Snackbar.LENGTH_SHORT
             )
             snackbar.setAction(getString(R.string.yes)) {
                 finish()

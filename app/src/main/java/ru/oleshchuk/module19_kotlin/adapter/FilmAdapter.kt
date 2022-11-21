@@ -28,7 +28,7 @@ class FilmAdapter( private val onItemClickListener: FilmAdapter.OnItemClickListe
         fun onClick(film: Film)
     }
 
-    fun addFilms(newFilms: ArrayList<Film>){
+    fun addFilms(newFilms: List<Film>){
         val diffResult = DiffUtil.calculateDiff(FilmDiff(films, newFilms))
         films.clear()
         films.addAll(newFilms)
