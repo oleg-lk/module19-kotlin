@@ -5,8 +5,8 @@
     android:id="@+id/film_card"
     android:layout_width="match_parent"
     android:layout_height="@dimen/film_card_height"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="5dp"
+    android:layout_marginHorizontal="@dimen/film_card_margin_hor"
+    android:layout_marginVertical="@dimen/film_card_margin_ver"
     app:cardCornerRadius="@dimen/film_card_corner_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +30,7 @@
             android:fontFamily="sans-serif-condensed"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="@dimen/film_name_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/film_poster"
             app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +40,7 @@
             android:id="@+id/film_desc"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/film_desc_margin"
             android:ellipsize="end"
             android:maxLines="2"
             app:layout_constraintBottom_toBottomOf="parent"
