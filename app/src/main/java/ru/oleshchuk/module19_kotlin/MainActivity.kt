@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if(supportFragmentManager.backStackEntryCount == 1) {
+        if(supportFragmentManager.backStackEntryCount == 1){
             val snackbar = Snackbar.make(
                 binding.mainLayout,
                 getString(R.string.ask_exit),

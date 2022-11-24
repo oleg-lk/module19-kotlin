@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
                 }
                 //filter by names
                 val filmList = FilmBd.films.filter { film ->
-                    if(film.name!=null)
+                    if(film.name != null)
                         film.name.contains(p0, true)
                     else
                         false
