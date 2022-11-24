@@ -12,4 +12,8 @@
     <dimen name="height_view_resource">48dp</dimen>
     <dimen name="text_size_view_resource">18sp</dimen>
     <dimen name="fab_details_margin">18dp</dimen>
+    <dimen name="film_name_size">20sp</dimen>
+    <dimen name="film_desc_margin">5dp</dimen>
+    <dimen name="film_card_margin_hor">10dp</dimen>
+    <dimen name="film_card_margin_ver">5dp</dimen>
 </resources>
