@@ -16,4 +16,5 @@
     <dimen name="film_desc_margin">5dp</dimen>
     <dimen name="film_card_margin_hor">10dp</dimen>
     <dimen name="film_card_margin_ver">5dp</dimen>
+    <dimen name="search_margin">5dp</dimen>
 </resources>

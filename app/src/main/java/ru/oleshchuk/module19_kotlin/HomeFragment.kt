@@ -1,17 +1,23 @@
 package ru.oleshchuk.module19_kotlin
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
+import android.transition.Scene
+import android.transition.Slide
+import android.transition.TransitionManager
+import android.transition.TransitionSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import ru.oleshchuk.module19_kotlin.adapter.FilmAdapter
 import ru.oleshchuk.module19_kotlin.constants.FilmBd
 import ru.oleshchuk.module19_kotlin.databinding.FragmentHomeBinding
+import ru.oleshchuk.module19_kotlin.decor.FilmDecoration
 import ru.oleshchuk.module19_kotlin.model.Film
 
 /**
@@ -33,17 +39,25 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mainScene = Scene.getSceneForLayout(binding.root, R.layout.merge_home_screen, context)
+        //mainScene.enter()
+        val slideSearch = Slide(Gravity.TOP).addTarget(R.id.search).setDuration(200)
+        val slideRv = Slide(Gravity.BOTTOM).addTarget(R.id.films_view).setDuration(300)
+        TransitionManager.go(mainScene, TransitionSet()
+            .addTransition(slideSearch)
+            .addTransition(slideRv))
         initFilms()
         initSearch()
     }
 
     //search menu
     private fun initSearch() {
-        binding.search.setOnClickListener {
-            binding.search.isIconified = false
+        val search = view?.findViewById<SearchView>(R.id.search)
+        search?.setOnClickListener {
+            (it as SearchView).isIconified = false
         }
 
-        binding.search.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        search?.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             //Этот метод отрабатывает при нажатии кнопки "поиск" на софт клавиатуре
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return true
@@ -71,21 +85,22 @@ class HomeFragment : Fragment() {
 
     private fun initFilms() {
         filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener {
-            override fun onClick(film: Film) {
+            override fun onClick(film: Film?) {
                 (activity as MainActivity).openFilmDetails(film)
             }
         })
+        val filmsView = view?.findViewById<RecyclerView>(R.id.films_view)
         /*set decorations*/
         val dividerItemDecoration =
             DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         ResourcesCompat.getDrawable(resources, R.drawable.layer_divider, null)?.let {
             dividerItemDecoration.setDrawable(it)
-            binding.filmsView.addItemDecoration(dividerItemDecoration)
+            filmsView?.addItemDecoration(dividerItemDecoration)
         }
-        //val filmDecoration = FilmDecoration(0)
-        //binding.filmsView.addItemDecoration(filmDecoration)
+        val filmDecoration = FilmDecoration(0)
+        filmsView?.addItemDecoration(filmDecoration)
         /*set adapter*/
-        binding.filmsView.adapter = filmAdapter
+        filmsView?.adapter = filmAdapter
         filmAdapter?.addFilms(FilmBd.films)
     }
 }

@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //open fragment on film
-    fun openFilmDetails(film: Film){
+    fun openFilmDetails(film: Film?){
         val bundle = Bundle()
         bundle.putParcelable(Args.FILM_ARG, film)
         val detailsFragment = DetailsFragment()

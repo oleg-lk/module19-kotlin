@@ -37,7 +37,7 @@ class FavoritesFragment : Fragment() {
 
         val recyclerView = RecyclerView(requireContext())
         val adapter = FilmAdapter( object : FilmAdapter.OnItemClickListener{
-            override fun onClick(film: Film) {
+            override fun onClick(film: Film?) {
                 (activity as MainActivity).openFilmDetails(film)
             }
         })
