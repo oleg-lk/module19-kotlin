@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.oleshchuk.module19_kotlin.R
 import ru.oleshchuk.module19_kotlin.databinding.FilmItemBinding
 import ru.oleshchuk.module19_kotlin.diff.FilmDiff
@@ -15,14 +16,21 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
 
     private val films = mutableListOf<Film>()
 
-    class FilmHolder(item : View) : RecyclerView.ViewHolder(item) {
+    class FilmHolder(val item : View) : RecyclerView.ViewHolder(item) {
         private val binding = FilmItemBinding.bind(item)
         var holdFilm: Film? = null
 
         fun bind(film: Film)= with(binding){
             filmName.text = film.name
             filmDesc.text = film.desc
-            filmPoster.setImageResource(film.posterId)
+            //Указываем контейнер, в котором будет "жить" наша картинка
+            Glide.with(item)
+                //Загружаем сам ресурс
+                .load(film.posterId)
+                //Центруем изображение
+                .centerCrop()
+                //Указываем ImageView, куда будем загружать изображение
+                .into(filmPoster)
             /*save film*/
             holdFilm = film
         }
