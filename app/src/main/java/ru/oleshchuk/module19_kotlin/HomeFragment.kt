@@ -78,14 +78,18 @@ class HomeFragment(private val position: Int) : Fragment() {
         })
     }
 
-    /*************************************************************************/
-    private fun initFilms() {
+    init {
         filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener {
             override fun onClick(film: Film?) {
 
                 (activity as MainActivity).openFilmDetails(film)
             }
         })
+        filmAdapter?.addFilms(FilmBd.films)
+
+    }
+    /*************************************************************************/
+    private fun initFilms() {
         val filmsView = view?.findViewById<RecyclerView>(R.id.films_view)
         /*set decorations*/
         val dividerItemDecoration =
@@ -98,6 +102,5 @@ class HomeFragment(private val position: Int) : Fragment() {
         filmsView?.addItemDecoration(filmDecoration)
         /*set adapter*/
         filmsView?.adapter = filmAdapter
-        filmAdapter?.addFilms(FilmBd.films)
     }
 }
