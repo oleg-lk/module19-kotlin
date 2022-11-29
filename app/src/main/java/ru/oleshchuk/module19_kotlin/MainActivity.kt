@@ -2,7 +2,9 @@ package ru.oleshchuk.module19_kotlin
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
@@ -56,6 +58,7 @@ class MainActivity : AppCompatActivity() {
 
     /*************************************************************************/
     private fun bottomNavigation(){
+
         binding.bottomNav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.nav_menu_home->{
@@ -85,8 +88,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.lottiieAnimation.addAnimatorUpdateListener {
+            it.doOnEnd {
+                binding.lottiieAnimation.visibility = View.INVISIBLE
+                binding.centralView.visibility = View.VISIBLE
+                binding.bottomNav.visibility = View.VISIBLE
+            }
+        }
+        /**/
         bottomNavigation()
-
         /*start home fragment*/
         addFragment(FragmentTags.TAG_FRAGMENT_HOME)
     }
