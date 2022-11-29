@@ -1,11 +1,6 @@
 package ru.oleshchuk.module19_kotlin
 
 import android.os.Bundle
-import android.transition.Scene
-import android.transition.Slide
-import android.transition.TransitionManager
-import android.transition.TransitionSet
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import ru.oleshchuk.module19_kotlin.adapter.FilmAdapter
+import ru.oleshchuk.module19_kotlin.animation.FragmentAnimation
 import ru.oleshchuk.module19_kotlin.constants.FilmBd
 import ru.oleshchuk.module19_kotlin.databinding.FragmentHomeBinding
 import ru.oleshchuk.module19_kotlin.decor.FilmDecoration
@@ -23,7 +19,7 @@ import ru.oleshchuk.module19_kotlin.model.Film
 /**
  * A simple [Fragment] subclass.
  */
-class HomeFragment : Fragment() {
+class HomeFragment(private val position: Int) : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
     private var filmAdapter : FilmAdapter? = null
@@ -41,8 +37,11 @@ class HomeFragment : Fragment() {
     /*************************************************************************/
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /**/
         initFilms()
         initSearch()
+        /**/
+        FragmentAnimation.animateFragment(view, requireActivity(), position)
     }
 
     /*************************************************************************/
@@ -83,6 +82,7 @@ class HomeFragment : Fragment() {
     private fun initFilms() {
         filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener {
             override fun onClick(film: Film?) {
+
                 (activity as MainActivity).openFilmDetails(film)
             }
         })
