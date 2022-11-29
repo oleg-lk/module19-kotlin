@@ -28,6 +28,7 @@ class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
     private var filmAdapter : FilmAdapter? = null
 
+    /*************************************************************************/
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,19 +38,14 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    /*************************************************************************/
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mainScene = Scene.getSceneForLayout(binding.root, R.layout.merge_home_screen, context)
-        //mainScene.enter()
-        val slideSearch = Slide(Gravity.TOP).addTarget(R.id.search).setDuration(200)
-        val slideRv = Slide(Gravity.BOTTOM).addTarget(R.id.films_view).setDuration(300)
-        TransitionManager.go(mainScene, TransitionSet()
-            .addTransition(slideSearch)
-            .addTransition(slideRv))
         initFilms()
         initSearch()
     }
 
+    /*************************************************************************/
     //search menu
     private fun initSearch() {
         val search = view?.findViewById<SearchView>(R.id.search)
@@ -83,6 +79,7 @@ class HomeFragment : Fragment() {
         })
     }
 
+    /*************************************************************************/
     private fun initFilms() {
         filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener {
             override fun onClick(film: Film?) {

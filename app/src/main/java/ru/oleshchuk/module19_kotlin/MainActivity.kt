@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*************************************************************************/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigation()
 
+        /*start home fragment*/
         supportFragmentManager
             .beginTransaction()
             .add(R.id.central_view, HomeFragment(), FragmentTags.TAG_FRAGMENT_HOME)
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    /*************************************************************************/
     override fun onBackPressed() {
         if(supportFragmentManager.backStackEntryCount == 1){
             val snackbar = Snackbar.make(
