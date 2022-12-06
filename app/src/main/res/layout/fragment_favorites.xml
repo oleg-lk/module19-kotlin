@@ -7,6 +7,7 @@
     android:background="@drawable/shape_favorite"
     tools:context=".FavoritesFragment"
     android:visibility="invisible"
+    android:id="@+id/favorites_fragment_root"
     >
 
     <androidx.recyclerview.widget.RecyclerView
