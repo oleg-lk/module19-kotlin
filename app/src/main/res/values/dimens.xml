@@ -17,4 +17,7 @@
     <dimen name="film_card_margin_hor">10dp</dimen>
     <dimen name="film_card_margin_ver">5dp</dimen>
     <dimen name="search_margin">5dp</dimen>
+    <dimen name="rating_size">50dp</dimen>
+    <dimen name="rating_marg_start">5dp</dimen>
+    <dimen name="rating_marg_top">150dp</dimen>
 </resources>
