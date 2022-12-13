@@ -9,5 +9,6 @@ data class Film(
     val name: String?,
     val posterId: Int,
     val desc: String?,
+    val rate: Int,
     var isFav : Boolean = false ) :
     Parcelable

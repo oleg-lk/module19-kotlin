@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyRatingView">
+        <attr name="ratingStrokeWidth" format="float" />
+        <attr name="ratingProgress" format="integer" />
+    </declare-styleable>
+</resources>

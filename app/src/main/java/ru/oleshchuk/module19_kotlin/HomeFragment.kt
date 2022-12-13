@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.ScaleAnimation
 import android.widget.SearchView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import ru.oleshchuk.module19_kotlin.constants.FilmBd
 import ru.oleshchuk.module19_kotlin.databinding.FragmentHomeBinding
 import ru.oleshchuk.module19_kotlin.decor.FilmDecoration
 import ru.oleshchuk.module19_kotlin.model.Film
+import ru.oleshchuk.module19_kotlin.view.MyRatingView
 
 /**
  * A simple [Fragment] subclass.
@@ -78,6 +80,7 @@ class HomeFragment(private val position: Int) : Fragment() {
         })
     }
 
+    /***********************************************************************/
     init {
         filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener {
             override fun onClick(film: Film?) {
@@ -88,6 +91,22 @@ class HomeFragment(private val position: Int) : Fragment() {
         filmAdapter?.addFilms(FilmBd.films)
 
     }
+
+    /*************************************************************************/
+    override fun onResume() {
+        super.onResume()
+
+//        val vwRate = binding.filmsView.itemAnimator
+//
+//        findViewById<MyRatingView>(R.id.vwRating)
+//        if(vwRate != null) {
+//            val anim = ScaleAnimation(0F, 0F, 1F, 1F)
+//            anim.duration = 2000
+//            vwRate.animation = anim
+//            anim.start()
+//        }
+    }
+
     /*************************************************************************/
     private fun initFilms() {
         val filmsView = view?.findViewById<RecyclerView>(R.id.films_view)
@@ -102,5 +121,7 @@ class HomeFragment(private val position: Int) : Fragment() {
         filmsView?.addItemDecoration(filmDecoration)
         /*set adapter*/
         filmsView?.adapter = filmAdapter
+
+        filmsView?.itemAnimator
     }
 }

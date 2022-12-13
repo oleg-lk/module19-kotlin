@@ -33,6 +33,7 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
                 .into(filmPoster)
             /*save film*/
             holdFilm = film
+            vwRating.setRating(film.rate)
         }
     }
 

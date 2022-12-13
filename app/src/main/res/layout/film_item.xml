@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:id="@+id/rootFilmItem">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/film_card"
@@ -58,10 +58,12 @@
     <ru.oleshchuk.module19_kotlin.view.MyRatingView
         android:id="@+id/vwRating"
         android:layout_width="@dimen/rating_size"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/rating_size"
         android:layout_marginStart="@dimen/rating_marg_start"
         android:layout_marginTop="@dimen/rating_marg_top"
         android:translationZ="10dp"
+        app:ratingStrokeWidth="15.0"
+        app:ratingProgress="25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
