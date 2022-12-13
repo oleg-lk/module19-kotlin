@@ -48,6 +48,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.x.x'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
 
     //Test
     testImplementation 'junit:junit:4.13.2'
