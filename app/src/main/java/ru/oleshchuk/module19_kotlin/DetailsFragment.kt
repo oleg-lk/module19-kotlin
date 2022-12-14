@@ -2,6 +2,7 @@ package ru.oleshchuk.module19_kotlin
 
 import android.content.Intent
 import android.os.Bundle
+import android.transition.Fade
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,11 @@ class DetailsFragment : Fragment() {
     ): View? {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    init {
+        enterTransition = Fade(Fade.MODE_IN).setDuration(500)
+        returnTransition= Fade(Fade.MODE_OUT).setDuration(200)
     }
 
     /*set type image*/

@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.oleshchuk.module19_kotlin.adapter.FilmAdapter
+import ru.oleshchuk.module19_kotlin.animation.FragmentAnimation
 import ru.oleshchuk.module19_kotlin.databinding.FragmentFavoritesBinding
 import ru.oleshchuk.module19_kotlin.model.Film
 
 /**
  * A Favorites [Fragment] subclass.
  */
-class FavoritesFragment : Fragment() {
+class FavoritesFragment(val position: Int) : Fragment() {
 
     private var _binding : FragmentFavoritesBinding? = null
 
@@ -35,13 +36,16 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = RecyclerView(requireContext())
-        val adapter = FilmAdapter( object : FilmAdapter.OnItemClickListener{
-            override fun onClick(film: Film) {
-                (activity as MainActivity).openFilmDetails(film)
-            }
-        })
-        recyclerView.adapter = adapter
+        /**/
+        FragmentAnimation.animateFragment(view, requireActivity(), position)
+
+        //val recyclerView = RecyclerView(requireContext())
+        //val adapter = FilmAdapter( object : FilmAdapter.OnItemClickListener{
+        //    override fun onClick(film: Film?) {
+        //        (activity as MainActivity).openFilmDetails(film)
+        //    }
+        //})
+        //recyclerView.adapter = adapter
         //adapter.addFilms(films)
     }
 }
