@@ -17,7 +17,7 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
     private val films = mutableListOf<Film>()
 
     class FilmHolder(val item : View) : RecyclerView.ViewHolder(item) {
-        private val binding = FilmItemBinding.bind(item)
+        val binding = FilmItemBinding.bind(item)
         var holdFilm: Film? = null
 
         fun bind(film: Film)= with(binding){
@@ -30,7 +30,7 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
                 //Центруем изображение
                 .centerCrop()
                 //Указываем ImageView, куда будем загружать изображение
-                .into(filmPoster)
+                .into(ivPoster)
             /*save film*/
             holdFilm = film
             vwRating.setRating(film.rate)
@@ -38,7 +38,7 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
     }
 
     interface OnItemClickListener{
-        fun onClick(film: Film?, pos: Int)
+        fun onClick(film: Film?, view : View)
     }
 
     fun addFilms(newFilms: List<Film>){
@@ -55,9 +55,14 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
 
     override fun onBindViewHolder(holder: FilmHolder, position: Int) {
         holder.bind(films[position])
-        holder.itemView.findViewById<CardView>(R.id.film_card).setOnClickListener {
+        holder.binding.ivPoster.transitionName = "film_$position"
+//        holder.itemView.findViewById<CardView>(R.id.film_card).setOnClickListener {
+//            /*on click by film card*/
+//            onItemClickListener.onClick(holder.holdFilm, position)
+//        }
+        holder.binding.filmCard.setOnClickListener {
             /*on click by film card*/
-            onItemClickListener.onClick(holder.holdFilm, position)
+            onItemClickListener.onClick(holder.holdFilm, holder.binding.ivPoster)
         }
     }
 

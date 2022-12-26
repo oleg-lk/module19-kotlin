@@ -2,7 +2,9 @@ package ru.oleshchuk.module19_kotlin
 
 import android.content.Intent
 import android.os.Bundle
+import android.transition.ChangeTransform
 import android.transition.Fade
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +31,8 @@ class DetailsFragment : Fragment() {
     init {
         enterTransition = Fade(Fade.MODE_IN).setDuration(500)
         returnTransition= Fade(Fade.MODE_OUT).setDuration(200)
+        sharedElementEnterTransition = ChangeTransform().setDuration(500)
+        sharedElementReturnTransition = ChangeTransform().setDuration(500)
     }
 
     /*set type image*/
@@ -45,7 +49,14 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Приостанавливаем воспроизведение Transition до загрузки данных
+        postponeEnterTransition()
+
+        val sharedName = arguments?.getString(Args.FILM_SHARED_ELEMENT_ARG)
+        binding.centralPoster.transitionName = sharedName
+        Log.d("lkLog", "sharedName = $sharedName")
         val film = arguments?.getParcelable<Film>(Args.FILM_ARG)
+
         film?.apply {
             binding.centralPoster.setImageResource(posterId)
             binding.detailsDesc.text = desc
@@ -53,11 +64,13 @@ class DetailsFragment : Fragment() {
             /*set type image*/
             //setFabFavourite (this.isFav)
         }
+
         /*proccess fab button*/
         binding.isFavourite = _isFav
         binding.fabDetailsFavourite.setOnClickListener {
             film?.apply {
                 isFav = !isFav
+                /*test data binding*/
                 _isFav.set(!_isFav.get())
                 //setFabFavourite(isFav)
             }
@@ -72,5 +85,8 @@ class DetailsFragment : Fragment() {
                 startActivity(Intent.createChooser(intent, "Choose"))
             }
         }
+
+        //Данные загружены, запускаем анимацию перехода
+        startPostponedEnterTransition()
     }
 }

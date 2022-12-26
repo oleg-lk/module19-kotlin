@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/film_poster"
+            android:id="@+id/ivPoster"
             android:layout_width="@dimen/film_image_width"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"

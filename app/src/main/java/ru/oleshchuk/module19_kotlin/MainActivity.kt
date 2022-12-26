@@ -1,6 +1,7 @@
 package ru.oleshchuk.module19_kotlin
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
@@ -30,18 +31,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     /*************************************************************************/
-    private fun replaceFragment(tag: String, bundle: Bundle? = null)
+    private fun replaceFragment(tag: String, bundle: Bundle? = null, sharedView : View ? = null)
     {
         val fragment = getFragment(tag) ?: return
         if(bundle!=null){
             fragment.arguments = bundle
         }
         supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.central_view, fragment, tag)
-            .addToBackStack(tag)
-            .commit()
-    }
+            .beginTransaction().apply {
+                sharedView?.let{
+                    setReorderingAllowed(true)
+                    Log.d("lkLog", "it.transitionName = ${it.transitionName}")
+                    addSharedElement(it, it.transitionName)
+                }
+                replace(R.id.central_view, fragment, tag)
+                addToBackStack(tag)
+                commit()
+            }
+   }
 
     /*************************************************************************/
     private fun addFragment(tag: String)
@@ -129,12 +136,12 @@ class MainActivity : AppCompatActivity() {
 
     /*************************************************************************/
     //open fragment on film
-    fun openFilmDetails(film: Film?, pos: Int){
+    fun openFilmDetails(film: Film?, view : View){
         val bundle = Bundle()
         bundle.putParcelable(Args.FILM_ARG, film)
-        bundle.putString(Args.FILM_SHARED_ELEMENT_ARG, "film_$pos")
+        bundle.putString(Args.FILM_SHARED_ELEMENT_ARG, view.transitionName)
         /*replace to fragment details*/
-        replaceFragment(FragmentTags.TAG_FRAGMENT_DETAILS, bundle)
+        replaceFragment(FragmentTags.TAG_FRAGMENT_DETAILS, bundle, view)
     }
 
     /*************************************************************************/

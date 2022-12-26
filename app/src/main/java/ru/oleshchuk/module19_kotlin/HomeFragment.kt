@@ -80,8 +80,8 @@ class HomeFragment(private val position: Int) : Fragment() {
     /***********************************************************************/
     init {
         filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener {
-            override fun onClick(film: Film?, pos: Int) {
-                (activity as MainActivity).openFilmDetails(film, pos)
+            override fun onClick(film: Film?, view : View) {
+                (activity as MainActivity).openFilmDetails(film, view)
             }
         })
         filmAdapter?.addFilms(FilmBd.films)
