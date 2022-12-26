@@ -1,8 +1,6 @@
 package ru.oleshchuk.module19_kotlin
 
 import android.os.Bundle
-import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +8,6 @@ import android.widget.SearchView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.oleshchuk.module19_kotlin.adapter.FilmAdapter
 import ru.oleshchuk.module19_kotlin.animation.FilmItemAnimation
@@ -42,10 +39,10 @@ class HomeFragment(private val position: Int) : Fragment() {
     /*************************************************************************/
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /**/
+        /*inits*/
         initFilms()
         initSearch()
-        /**/
+        /*start animation*/
         FragmentAnimation.animateFragment(view, requireActivity(), position)
     }
 
@@ -71,10 +68,7 @@ class HomeFragment(private val position: Int) : Fragment() {
                 }
                 //filter by names
                 val filmList = FilmBd.films.filter { film ->
-                    if(film.name != null)
-                        film.name.contains(p0, true)
-                    else
-                        false
+                    (film.name != null) && film.name.contains(p0, true)
                 }
                 //true if the query has been handled by the listener
                 filmAdapter?.addFilms(filmList)
@@ -86,8 +80,8 @@ class HomeFragment(private val position: Int) : Fragment() {
     /***********************************************************************/
     init {
         filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener {
-            override fun onClick(film: Film?) {
-                (activity as MainActivity).openFilmDetails(film)
+            override fun onClick(film: Film?, pos: Int) {
+                (activity as MainActivity).openFilmDetails(film, pos)
             }
         })
         filmAdapter?.addFilms(FilmBd.films)

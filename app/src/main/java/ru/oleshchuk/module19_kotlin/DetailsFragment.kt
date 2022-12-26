@@ -6,6 +6,7 @@ import android.transition.Fade
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.ObservableBoolean
 import androidx.fragment.app.Fragment
 import ru.oleshchuk.module19_kotlin.constants.Args
 import ru.oleshchuk.module19_kotlin.databinding.FragmentDetailsBinding
@@ -14,6 +15,7 @@ import ru.oleshchuk.module19_kotlin.model.Film
 class DetailsFragment : Fragment() {
 
     private lateinit var binding : FragmentDetailsBinding
+    private val _isFav = ObservableBoolean(false)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,13 +51,15 @@ class DetailsFragment : Fragment() {
             binding.detailsDesc.text = desc
             binding.detailsToolbar.title = name
             /*set type image*/
-            setFabFavourite (this.isFav)
+            //setFabFavourite (this.isFav)
         }
-        /**/
+        /*proccess fab button*/
+        binding.isFavourite = _isFav
         binding.fabDetailsFavourite.setOnClickListener {
             film?.apply {
                 isFav = !isFav
-                setFabFavourite(isFav)
+                _isFav.set(!_isFav.get())
+                //setFabFavourite(isFav)
             }
         }
         binding.fabDetailsShare.setOnClickListener {

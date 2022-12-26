@@ -1,10 +1,8 @@
 package ru.oleshchuk.module19_kotlin
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.doOnEnd
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
@@ -49,7 +47,6 @@ class MainActivity : AppCompatActivity() {
     private fun addFragment(tag: String)
     {
         val fragment = getFragment(tag) ?: return
-        /**/
         supportFragmentManager
             .beginTransaction()
             .add(R.id.central_view, fragment, tag)
@@ -92,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         /*start home fragment*/
         addFragment(FragmentTags.TAG_FRAGMENT_LOTIIE)
 
-        /**/
+        /*bottom Navigation*/
         bottomNavigation()
     }
 
@@ -101,8 +98,6 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.visibility = View.VISIBLE
         /*start home fragment*/
         replaceFragment(FragmentTags.TAG_FRAGMENT_HOME)
-        /**/
-        //bottomNavigation()
     }
 
     /*************************************************************************/
@@ -134,10 +129,11 @@ class MainActivity : AppCompatActivity() {
 
     /*************************************************************************/
     //open fragment on film
-    fun openFilmDetails(film: Film?){
+    fun openFilmDetails(film: Film?, pos: Int){
         val bundle = Bundle()
         bundle.putParcelable(Args.FILM_ARG, film)
-        /**/
+        bundle.putString(Args.FILM_SHARED_ELEMENT_ARG, "film_$pos")
+        /*replace to fragment details*/
         replaceFragment(FragmentTags.TAG_FRAGMENT_DETAILS, bundle)
     }
 
