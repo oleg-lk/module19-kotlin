@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
                 FragmentTags.TAG_FRAGMENT_LATER -> LaterFragment(3)
                 FragmentTags.TAG_FRAGMENT_COLLECTION -> CollectionFragment(4)
                 FragmentTags.TAG_FRAGMENT_DETAILS -> DetailsFragment()
+                FragmentTags.TAG_FRAGMENT_LOTIIE -> LotiieFragment()
                 else -> null
             }
     }
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.central_view, fragment, tag)
-            .addToBackStack(null)
+            .addToBackStack(tag)
             .commit()
     }
 
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager
             .beginTransaction()
             .add(R.id.central_view, fragment, tag)
-            .addToBackStack(null)
+            .addToBackStack(tag)
             .commit()
     }
 
@@ -88,17 +89,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.lottiieAnimation.addAnimatorUpdateListener {
-            it.doOnEnd {
-                binding.lottiieAnimation.visibility = View.INVISIBLE
-                binding.centralView.visibility = View.VISIBLE
-                binding.bottomNav.visibility = View.VISIBLE
-            }
-        }
+        /*start home fragment*/
+        addFragment(FragmentTags.TAG_FRAGMENT_LOTIIE)
+
         /**/
         bottomNavigation()
+    }
+
+    fun start(){
+        binding.centralView.visibility = View.VISIBLE
+        binding.bottomNav.visibility = View.VISIBLE
         /*start home fragment*/
-        addFragment(FragmentTags.TAG_FRAGMENT_HOME)
+        replaceFragment(FragmentTags.TAG_FRAGMENT_HOME)
+        /**/
+        //bottomNavigation()
     }
 
     /*************************************************************************/

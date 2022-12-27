@@ -1,6 +1,8 @@
 package ru.oleshchuk.module19_kotlin
 
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +10,10 @@ import android.widget.SearchView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.oleshchuk.module19_kotlin.adapter.FilmAdapter
+import ru.oleshchuk.module19_kotlin.animation.FilmItemAnimation
 import ru.oleshchuk.module19_kotlin.animation.FragmentAnimation
 import ru.oleshchuk.module19_kotlin.constants.FilmBd
 import ru.oleshchuk.module19_kotlin.databinding.FragmentHomeBinding
@@ -23,6 +27,7 @@ class HomeFragment(private val position: Int) : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
     private var filmAdapter : FilmAdapter? = null
+    private var rvFilmsView : RecyclerView? = null
 
     /*************************************************************************/
     override fun onCreateView(
@@ -78,29 +83,46 @@ class HomeFragment(private val position: Int) : Fragment() {
         })
     }
 
+    /***********************************************************************/
     init {
         filmAdapter = FilmAdapter(object : FilmAdapter.OnItemClickListener {
             override fun onClick(film: Film?) {
-
                 (activity as MainActivity).openFilmDetails(film)
             }
         })
         filmAdapter?.addFilms(FilmBd.films)
-
     }
+
+    /*************************************************************************/
+    override fun onResume() {
+        super.onResume()
+    }
+
+    /*************************************************************************/
+    override fun onPause() {
+        super.onPause()
+    }
+
+    /*************************************************************************/
+    override fun onStart() {
+        super.onStart()
+    }
+
     /*************************************************************************/
     private fun initFilms() {
-        val filmsView = view?.findViewById<RecyclerView>(R.id.films_view)
+        rvFilmsView = view?.findViewById<RecyclerView>(R.id.films_view)
+
         /*set decorations*/
         val dividerItemDecoration =
             DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         ResourcesCompat.getDrawable(resources, R.drawable.layer_divider, null)?.let {
             dividerItemDecoration.setDrawable(it)
-            filmsView?.addItemDecoration(dividerItemDecoration)
+            rvFilmsView?.addItemDecoration(dividerItemDecoration)
         }
         val filmDecoration = FilmDecoration(0)
-        filmsView?.addItemDecoration(filmDecoration)
+        rvFilmsView?.addItemDecoration(filmDecoration)
         /*set adapter*/
-        filmsView?.adapter = filmAdapter
+        rvFilmsView?.adapter = filmAdapter
+        rvFilmsView?.itemAnimator = FilmItemAnimation(requireContext())
     }
 }

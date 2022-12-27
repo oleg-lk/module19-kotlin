@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/film_card"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/film_card_height"
-    android:layout_marginHorizontal="@dimen/film_card_margin_hor"
-    android:layout_marginVertical="@dimen/film_card_margin_ver"
-    app:cardCornerRadius="@dimen/film_card_corner_radius">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/film_card_color">
+        android:layout_height="wrap_content"
+        android:id="@+id/rootFilmItem">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/film_card"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/film_card_height"
+        android:layout_marginHorizontal="@dimen/film_card_margin_hor"
+        android:backgroundTint="@color/film_card_color"
+        app:cardCornerRadius="@dimen/film_card_corner_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/film_poster"
@@ -25,30 +29,44 @@
 
         <TextView
             android:id="@+id/film_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/film_name_height"
+            android:layout_gravity="top"
             android:fontFamily="sans-serif-condensed"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/film_name_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/film_poster"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/film_image_width"
+            android:paddingStart="5dp"
             tools:text="TextView" />
 
         <TextView
             android:id="@+id/film_desc"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginLeft="@dimen/film_desc_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
             android:ellipsize="end"
-            android:maxLines="2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/film_poster"
-            app:layout_constraintTop_toBottomOf="@+id/film_name"
+            android:maxLines="6"
+            android:layout_marginTop="@dimen/film_name_height"
+            android:layout_marginStart="@dimen/film_image_width"
+            android:paddingStart="5dp"
             tools:text="@tools:sample/lorem/random" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+
+    <ru.oleshchuk.module19_kotlin.view.MyRatingView
+        android:id="@+id/vwRating"
+        android:layout_width="@dimen/rating_size"
+        android:layout_height="@dimen/rating_size"
+        android:layout_marginStart="@dimen/rating_marg_start"
+        android:layout_marginTop="@dimen/rating_marg_top"
+        android:translationZ="10dp"
+        app:ratingStrokeWidth="15.0"
+        app:ratingProgress="25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

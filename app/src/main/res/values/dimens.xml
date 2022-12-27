@@ -7,6 +7,7 @@
     <dimen name="main_screen_posters_width">100dp</dimen>
     <dimen name="film_card_height">180dp</dimen>
     <dimen name="film_image_width">160dp</dimen>
+    <dimen name="film_name_height">60dp</dimen>
     <dimen name="film_card_corner_radius">10dp</dimen>
     <dimen name="details_appbar_height">250dp</dimen>
     <dimen name="height_view_resource">48dp</dimen>
@@ -17,4 +18,7 @@
     <dimen name="film_card_margin_hor">10dp</dimen>
     <dimen name="film_card_margin_ver">5dp</dimen>
     <dimen name="search_margin">5dp</dimen>
+    <dimen name="rating_size">50dp</dimen>
+    <dimen name="rating_marg_start">5dp</dimen>
+    <dimen name="rating_marg_top">150dp</dimen>
 </resources>
