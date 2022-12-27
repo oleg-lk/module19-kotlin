@@ -43,7 +43,7 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
     }
 
     interface OnItemClickListener{
-        fun onClick(film: Film?)
+        fun onClick(film: Film?, position : Int)
     }
 
     fun addFilms(newFilms: List<Film>){
@@ -62,7 +62,7 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
         holder.bind(films[position])
         holder.itemView.findViewById<CardView>(R.id.film_card).setOnClickListener {
             /*on click by film card*/
-            onItemClickListener.onClick(holder.holdFilm)
+            onItemClickListener.onClick(holder.holdFilm, position)
         }
         val binding = FilmItemBinding.bind(holder.itemView)
         binding.vwRating.startAnimation()
