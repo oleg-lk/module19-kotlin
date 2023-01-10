@@ -1,6 +1,5 @@
-package ru.oleshchuk.module19_kotlin.model
+package ru.oleshchuk.module19_kotlin.domain
 
-import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 

@@ -4,6 +4,6 @@
     android:id="@+id/collection_fragment_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CollectionFragment"
+    tools:context=".view.fragments.CollectionFragment"
     android:background="@drawable/shape_collection"
     android:visibility="invisible"/>

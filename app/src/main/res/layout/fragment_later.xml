@@ -4,7 +4,7 @@
     android:id="@+id/later_fragment_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LaterFragment"
+    tools:context=".view.fragments.LaterFragment"
     android:background="@drawable/shape_later"
     android:visibility="invisible">
 </FrameLayout>

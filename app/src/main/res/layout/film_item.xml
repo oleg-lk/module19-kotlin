@@ -56,7 +56,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ru.oleshchuk.module19_kotlin.view.MyRatingView
+    <ru.oleshchuk.module19_kotlin.view.customviews.MyRatingView
         android:id="@+id/vwRating"
         android:layout_width="@dimen/rating_size"
         android:layout_height="@dimen/rating_size"

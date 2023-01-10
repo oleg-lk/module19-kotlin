@@ -1,21 +1,16 @@
-package ru.oleshchuk.module19_kotlin.adapter
+package ru.oleshchuk.module19_kotlin.view.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.AlphaAnimation
-import android.view.animation.OvershootInterpolator
-import android.view.animation.ScaleAnimation
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.oleshchuk.module19_kotlin.R
 import ru.oleshchuk.module19_kotlin.databinding.FilmItemBinding
-import ru.oleshchuk.module19_kotlin.diff.FilmDiff
-import ru.oleshchuk.module19_kotlin.model.Film
+import ru.oleshchuk.module19_kotlin.domain.Film
 
 class FilmAdapter(private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<FilmAdapter.FilmHolder>() {
 
@@ -47,6 +42,7 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
     }
 
     fun addFilms(newFilms: List<Film>){
+        //Log.d("lkLog", "FilmAdapter addFilms")
         val diffResult = DiffUtil.calculateDiff(FilmDiff(films, newFilms))
         films.clear()
         films.addAll(newFilms)
