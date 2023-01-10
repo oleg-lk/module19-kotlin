@@ -1,4 +1,4 @@
-package ru.oleshchuk.module19_kotlin
+package ru.oleshchuk.module19_kotlin.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ru.oleshchuk.module19_kotlin.constants.Args
+import ru.oleshchuk.module19_kotlin.R
+import ru.oleshchuk.module19_kotlin.data.Args
 import ru.oleshchuk.module19_kotlin.databinding.FragmentDetailsBinding
-import ru.oleshchuk.module19_kotlin.model.Film
+import ru.oleshchuk.module19_kotlin.domain.Film
 
 class DetailsFragment : Fragment() {
 

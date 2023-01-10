@@ -1,9 +1,9 @@
-package ru.oleshchuk.module19_kotlin.constants
+package ru.oleshchuk.module19_kotlin.data
 
 import ru.oleshchuk.module19_kotlin.R
-import ru.oleshchuk.module19_kotlin.model.Film
+import ru.oleshchuk.module19_kotlin.domain.Film
 
-object FilmBd {
+class MainRepository {
     val films = arrayListOf<Film>(
         Film(
             "Доктор Ноу (фильм, 1962)  Dr. No",

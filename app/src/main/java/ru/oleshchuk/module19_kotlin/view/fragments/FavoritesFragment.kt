@@ -1,15 +1,12 @@
-package ru.oleshchuk.module19_kotlin
+package ru.oleshchuk.module19_kotlin.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import ru.oleshchuk.module19_kotlin.adapter.FilmAdapter
-import ru.oleshchuk.module19_kotlin.animation.FragmentAnimation
+import ru.oleshchuk.module19_kotlin.utils.FragmentAnimation
 import ru.oleshchuk.module19_kotlin.databinding.FragmentFavoritesBinding
-import ru.oleshchuk.module19_kotlin.model.Film
 
 /**
  * A Favorites [Fragment] subclass.

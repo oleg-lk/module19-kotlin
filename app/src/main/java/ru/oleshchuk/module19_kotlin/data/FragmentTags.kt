@@ -1,4 +1,4 @@
-package ru.oleshchuk.module19_kotlin.constants
+package ru.oleshchuk.module19_kotlin.data
 
 object FragmentTags {
     const val TAG_FRAGMENT_LOTIIE = "LotieFragment"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/shape_details"
     style="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
-    tools:context=".DetailsFragment">
+    tools:context=".view.fragments.DetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"

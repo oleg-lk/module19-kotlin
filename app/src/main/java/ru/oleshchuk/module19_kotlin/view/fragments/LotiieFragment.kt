@@ -1,15 +1,14 @@
-package ru.oleshchuk.module19_kotlin
+package ru.oleshchuk.module19_kotlin.view.fragments
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.animation.doOnCancel
-import androidx.core.animation.doOnEnd
+import ru.oleshchuk.module19_kotlin.MainActivity
+import ru.oleshchuk.module19_kotlin.R
 import ru.oleshchuk.module19_kotlin.databinding.FragmentLotiieBinding
 
 

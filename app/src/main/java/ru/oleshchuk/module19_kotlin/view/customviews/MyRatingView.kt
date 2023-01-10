@@ -1,11 +1,10 @@
-package ru.oleshchuk.module19_kotlin.view
+package ru.oleshchuk.module19_kotlin.view.customviews
 
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.BounceInterpolator
