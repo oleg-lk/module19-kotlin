@@ -1,4 +1,4 @@
-package ru.oleshchuk.module19_kotlin.decor
+package ru.oleshchuk.module19_kotlin.view.adapter
 
 import android.content.res.Resources
 import android.graphics.Canvas

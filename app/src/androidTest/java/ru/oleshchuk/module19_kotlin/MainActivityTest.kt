@@ -16,7 +16,7 @@ import org.hamcrest.Matcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import ru.oleshchuk.module19_kotlin.adapter.FilmAdapter
+import ru.oleshchuk.module19_kotlin.view.adapter.FilmAdapter
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {

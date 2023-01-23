@@ -1,17 +1,16 @@
 package ru.oleshchuk.module19_kotlin
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.doOnEnd
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import ru.oleshchuk.module19_kotlin.constants.Args
-import ru.oleshchuk.module19_kotlin.constants.FragmentTags
+import ru.oleshchuk.module19_kotlin.data.Args
+import ru.oleshchuk.module19_kotlin.data.FragmentTags
 import ru.oleshchuk.module19_kotlin.databinding.ActivityMainBinding
-import ru.oleshchuk.module19_kotlin.model.Film
+import ru.oleshchuk.module19_kotlin.domain.Film
+import ru.oleshchuk.module19_kotlin.view.fragments.*
 
 class MainActivity : AppCompatActivity() {
 

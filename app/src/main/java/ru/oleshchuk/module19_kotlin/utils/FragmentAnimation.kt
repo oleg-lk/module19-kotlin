@@ -1,4 +1,4 @@
-package ru.oleshchuk.module19_kotlin.animation
+package ru.oleshchuk.module19_kotlin.utils
 
 import android.app.Activity
 import android.view.View
