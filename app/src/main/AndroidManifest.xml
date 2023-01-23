@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ru.oleshchuk.module19_kotlin">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".AppMovie"
         android:allowBackup="true"
