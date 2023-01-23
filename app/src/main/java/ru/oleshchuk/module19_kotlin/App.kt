@@ -4,7 +4,7 @@ import android.app.Application
 import ru.oleshchuk.module19_kotlin.data.MainRepository
 import ru.oleshchuk.module19_kotlin.domain.Interactor
 
-class App : Application() {
+class AppMovie : Application() {
     lateinit var interactor: Interactor
     lateinit var mainRepo : MainRepository
 
@@ -19,7 +19,7 @@ class App : Application() {
     }
 
     companion object {
-        lateinit var instance : App
+        lateinit var instance : AppMovie
             private set
     }
 }
