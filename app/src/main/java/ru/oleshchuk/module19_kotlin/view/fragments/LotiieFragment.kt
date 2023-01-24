@@ -38,7 +38,7 @@ class LotiieFragment : Fragment() {
         binding.lottiieAnimation.addAnimatorListener(
             object : AnimatorListenerAdapter(){
                 override fun onAnimationEnd(p0: Animator?) {
-                    (activity as MainActivity)?.start();
+                    (activity as MainActivity).start();
                 }
             }
         )

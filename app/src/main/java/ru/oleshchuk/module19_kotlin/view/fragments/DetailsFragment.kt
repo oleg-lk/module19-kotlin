@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import ru.oleshchuk.module19_kotlin.R
+import ru.oleshchuk.module19_kotlin.data.ApiConsts
 import ru.oleshchuk.module19_kotlin.data.Args
 import ru.oleshchuk.module19_kotlin.databinding.FragmentDetailsBinding
 import ru.oleshchuk.module19_kotlin.domain.Film
@@ -46,7 +48,13 @@ class DetailsFragment : Fragment() {
 
         val film = arguments?.getParcelable<Film>(Args.FILM_ARG)
         film?.apply {
-            binding.centralPoster.setImageResource(posterId)
+
+
+            Glide.with(requireContext())
+                .load(ApiConsts.TMDB_IMAGES_URL + "w342" + posterId)
+                .centerCrop()
+                .into(binding.centralPoster)
+            //binding.centralPoster.setImageResource( posterId)
             binding.detailsDesc.text = desc
             binding.detailsToolbar.title = name
             /*set type image*/

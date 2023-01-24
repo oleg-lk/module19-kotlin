@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.oleshchuk.module19_kotlin.R
+import ru.oleshchuk.module19_kotlin.data.ApiConsts
 import ru.oleshchuk.module19_kotlin.databinding.FilmItemBinding
 import ru.oleshchuk.module19_kotlin.domain.Film
 
@@ -26,14 +27,14 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
             //Указываем контейнер, в котором будет "жить" наша картинка
             Glide.with(item)
                 //Загружаем сам ресурс
-                .load(film.posterId)
+                .load(ApiConsts.TMDB_IMAGES_URL + "w342" + film.posterId)
                 //Центруем изображение
                 .centerCrop()
                 //Указываем ImageView, куда будем загружать изображение
                 .into(filmPoster)
             /*save film*/
             holdFilm = film
-            vwRating.setRating(film.rate)
+            vwRating.setRating((film.rate * 10).toInt())
         }
     }
 
