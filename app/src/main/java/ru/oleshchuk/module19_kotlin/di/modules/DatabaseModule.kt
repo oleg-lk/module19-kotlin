@@ -1,13 +1,14 @@
 package ru.oleshchuk.module19_kotlin.di.modules
 
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
+import ru.oleshchuk.module19_kotlin.data.BaseRepository
 import ru.oleshchuk.module19_kotlin.data.MainRepository
 import javax.inject.Singleton
 
 @Module
-class DatabaseModule {
-    @Provides
+interface DatabaseModule {
+    @Binds
     @Singleton
-    fun providesRepository() : MainRepository = MainRepository()
+    fun bindRepository(repo: MainRepository) : BaseRepository
 }
