@@ -100,8 +100,6 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.visibility = View.VISIBLE
         /*start home fragment*/
         replaceFragment(FragmentTags.TAG_FRAGMENT_HOME)
-        /**/
-        //bottomNavigation()
     }
 
     /*************************************************************************/

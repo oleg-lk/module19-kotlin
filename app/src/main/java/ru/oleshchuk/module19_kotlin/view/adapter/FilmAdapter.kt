@@ -1,6 +1,5 @@
 package ru.oleshchuk.module19_kotlin.view.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +42,6 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
     }
 
     fun addFilms(newFilms: List<Film>){
-        //Log.d("lkLog", "FilmAdapter addFilms")
         val diffResult = DiffUtil.calculateDiff(FilmDiff(films, newFilms))
         films.clear()
         films.addAll(newFilms)
@@ -63,23 +61,6 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
         }
         val binding = FilmItemBinding.bind(holder.itemView)
         binding.vwRating.startAnimation()
-//        binding.vwRating.apply {
-//            scaleX = 0f
-//            scaleY = 0f
-//            animate().apply {
-//                interpolator = OvershootInterpolator()
-//                duration = 1000
-//                scaleX(1f)
-//                scaleY(1f)
-//                start()
-//            }
-//        }
-        //@dimen/rating_size
-//        binding.vwRating.animation = AlphaAnimation(0.1f, 1f).apply {
-//            interpolator = AccelerateInterpolator()
-//            duration = 1000
-//            start()
-//        }
     }
 
     override fun getItemCount(): Int {

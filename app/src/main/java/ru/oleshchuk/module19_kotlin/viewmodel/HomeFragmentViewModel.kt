@@ -1,27 +1,27 @@
 package ru.oleshchuk.module19_kotlin.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.oleshchuk.module19_kotlin.AppMovie
 import ru.oleshchuk.module19_kotlin.domain.Film
+import ru.oleshchuk.module19_kotlin.domain.Interactor
+import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel() {
     var filmsLivaData = MutableLiveData<List<Film>>()
 
     /*get from App*/
-    private val interactor = AppMovie.instance.interactor
+    @Inject
+    lateinit var interactor : Interactor
 
     init {
-        //Log.d("lkLog", "HomeFragmentViewModel postValue")
-        //filmsLivaData.postValue(interactor.getFilmsDb())
+        AppMovie.instance.appComponent.inject(this)
         interactor.getFilmsFromApi(page = 1, callback = object : ApiCallback {
             override fun onSuccess(films: List<Film>) {
                 filmsLivaData.postValue(films)
             }
 
             override fun onFailure() {
-
             }
 
         })
