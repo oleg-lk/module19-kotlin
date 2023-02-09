@@ -21,4 +21,6 @@
     <dimen name="rating_size">50dp</dimen>
     <dimen name="rating_marg_start">5dp</dimen>
     <dimen name="rating_marg_top">150dp</dimen>
+    <dimen name="settings_rb_margin_start">16dp</dimen>
+    <dimen name="settings_rb_text_size">26sp</dimen>
 </resources>

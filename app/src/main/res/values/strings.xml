@@ -6,9 +6,16 @@
     <string name="main_screen_nav_menu_later">ПОСМОТРЕТЬ ПОЗЖЕ</string>
     <string name="main_screen_nav_menu_selections">ПОДБОРКИ</string>
     <string name="main_screen_setting_menu_title">НАСТРОЙКИ</string>
+    <string name="main_screen_setting_menu_settings">НАСТРОЙКИ</string>
     <string name="main_screen_title">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ask_exit">Are you sure you want to exit?</string>
     <string name="yes">Yes</string>
+    <string name="settings_rb_popular">Популярные</string>
+    <string name="settings_radio_group_title">Настройки</string>
+    <string name="settings_rb_top">Топ</string>
+    <string name="settings_rb_soon">Скоро</string>
+    <string name="settings_rb_playing">В кинотеатрах</string>
+    <string name="settings_rb_header">Подборка на главном экране</string>
 </resources>

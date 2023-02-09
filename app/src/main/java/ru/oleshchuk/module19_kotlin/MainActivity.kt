@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
                 FragmentTags.TAG_FRAGMENT_FAVOURITES -> FavoritesFragment(2)
                 FragmentTags.TAG_FRAGMENT_LATER -> LaterFragment(3)
                 FragmentTags.TAG_FRAGMENT_COLLECTION -> CollectionFragment(4)
+                FragmentTags.TAG_FRAGMENT_SETTINGS -> SettingsFragment.newInstance(5)
                 FragmentTags.TAG_FRAGMENT_DETAILS -> DetailsFragment()
                 FragmentTags.TAG_FRAGMENT_LOTIIE -> LotiieFragment()
                 else -> null
@@ -75,6 +76,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_menu_collection -> {
                     replaceFragment(FragmentTags.TAG_FRAGMENT_COLLECTION)
+                    true
+                }
+                R.id.nav_menu_settings -> {
+                    replaceFragment(FragmentTags.TAG_FRAGMENT_SETTINGS)
                     true
                 }
                 else ->false
