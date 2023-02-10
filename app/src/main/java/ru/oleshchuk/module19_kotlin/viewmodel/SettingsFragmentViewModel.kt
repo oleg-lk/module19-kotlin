@@ -1,8 +1,10 @@
 package ru.oleshchuk.module19_kotlin.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.oleshchuk.module19_kotlin.AppMovie
+import ru.oleshchuk.module19_kotlin.data.AppConsts
 import ru.oleshchuk.module19_kotlin.domain.Film
 import ru.oleshchuk.module19_kotlin.domain.Interactor
 import java.util.Locale.Category
@@ -18,6 +20,7 @@ class SettingsFragmentViewModel : ViewModel() {
 
     init {
         AppMovie.instance.appComponent.inject(this)
+
         //Получаем категорию при инициализации, чтобы у нас сразу подтягивалась категория
         getCategory()
     }

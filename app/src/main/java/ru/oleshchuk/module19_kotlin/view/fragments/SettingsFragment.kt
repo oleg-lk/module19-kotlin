@@ -1,6 +1,7 @@
 package ru.oleshchuk.module19_kotlin.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import ru.oleshchuk.module19_kotlin.R
+import ru.oleshchuk.module19_kotlin.data.AppConsts
 import ru.oleshchuk.module19_kotlin.databinding.FragmentHomeBinding
 import ru.oleshchuk.module19_kotlin.databinding.FragmentSettingsBinding
 import ru.oleshchuk.module19_kotlin.utils.FragmentAnimation
@@ -49,10 +51,10 @@ class SettingsFragment(private val position: Int) : Fragment() {
         binding.radioGroup.setOnCheckedChangeListener {
                 _, checkedId ->
             when(checkedId) {
-                R.id.rb_popular->viewModel.interactor.saveDefDefCategoryToPref(POPULAR_CATEGORY)
-                R.id.rb_top->viewModel.interactor.saveDefDefCategoryToPref(TOP_RATED_CATEGORY)
-                R.id.rb_soon->viewModel.interactor.saveDefDefCategoryToPref(UPCOMING_CATEGORY)
-                R.id.rb_playing->viewModel.interactor.saveDefDefCategoryToPref(NOW_PLAYING_CATEGORY)
+                R.id.rb_popular->viewModel.putCategory(POPULAR_CATEGORY)
+                R.id.rb_top->viewModel.putCategory(TOP_RATED_CATEGORY)
+                R.id.rb_soon->viewModel.putCategory(UPCOMING_CATEGORY)
+                R.id.rb_playing->viewModel.putCategory(NOW_PLAYING_CATEGORY)
             }
         }
     }

@@ -2,7 +2,9 @@ package ru.oleshchuk.module19_kotlin.providers
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.core.content.edit
+import ru.oleshchuk.module19_kotlin.data.AppConsts
 
 class PreferenceProvider(context: Context) {
 
@@ -23,12 +25,13 @@ class PreferenceProvider(context: Context) {
     //Category prefs
     //Сохраняем категорию
     fun saveDefCategory(category: String){
-        prefRef.edit().putString(KEY_DEFAULT_CATEGORY, category)
+        prefRef.edit { putString(KEY_DEFAULT_CATEGORY, category)}
     }
 
     //Забираем категорию
     fun getDefCategory() : String{
-        return prefRef.getString(KEY_DEFAULT_CATEGORY, DEFAULT_CATEGORY) ?: DEFAULT_CATEGORY
+        val category = prefRef.getString(KEY_DEFAULT_CATEGORY, DEFAULT_CATEGORY)
+        return category ?: DEFAULT_CATEGORY
     }
 
     //Ключи для наших настроек,

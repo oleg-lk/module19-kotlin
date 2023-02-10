@@ -62,15 +62,6 @@
             android:textColor="@color/settings_rb_text_color"
             android:textSize="@dimen/settings_rb_text_size" />
 
-        <RadioButton
-            android:id="@+id/rb_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/settings_rb_margin_start"
-            android:buttonTint="@color/white"
-            android:text="@string/settings_rb_header"
-            android:textColor="@color/settings_rb_text_color"
-            android:textSize="@dimen/settings_rb_text_size" />
     </RadioGroup>
 
 </FrameLayout>

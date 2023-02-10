@@ -55,7 +55,13 @@ class HomeFragment(private val position: Int) : Fragment() {
     }
 
     private fun initPullToRefresh(){
-
+        binding.swipeRefresh.setOnRefreshListener {
+            //filmAdapter?.clear()
+            //Делаем новый запрос фильмов на сервер
+            viewModel.getFilms()
+            //Убираем крутящееся колечко
+            binding.swipeRefresh.isRefreshing = false
+        }
     }
 
     /*************************************************************************/
@@ -64,6 +70,7 @@ class HomeFragment(private val position: Int) : Fragment() {
         /**/
         initFilms()
         initSearch()
+        initPullToRefresh()
 
         /*подпишемся на изменения View Model*/
         viewModel.filmsLivaData.observe(viewLifecycleOwner, Observer<List<Film>>{
