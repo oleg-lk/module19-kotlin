@@ -22,7 +22,12 @@ class PreferenceProvider(context: Context) {
         }
     }
 
-    //Category prefs
+    fun setCallback(callback: (str: String)->Unit){
+        prefRef.registerOnSharedPreferenceChangeListener { sharedPreferences, s ->
+            callback(s)
+        }
+    }
+
     //Сохраняем категорию
     fun saveDefCategory(category: String){
         prefRef.edit { putString(KEY_DEFAULT_CATEGORY, category)}

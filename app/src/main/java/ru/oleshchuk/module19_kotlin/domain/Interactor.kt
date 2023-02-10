@@ -37,6 +37,10 @@ class Interactor @Inject constructor (
         )
     }
 
+    fun setPrefCallback( callback: (str:String)->Unit){
+        preferenceProvider.setCallback(callback)
+    }
+
     fun getDefCategoryFromPref(): String {
         return preferenceProvider.getDefCategory()
     }

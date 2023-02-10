@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import ru.oleshchuk.module19_kotlin.MainActivity
 import ru.oleshchuk.module19_kotlin.R
+import ru.oleshchuk.module19_kotlin.data.AppConsts
 import ru.oleshchuk.module19_kotlin.databinding.FragmentHomeBinding
 import ru.oleshchuk.module19_kotlin.domain.Film
 import ru.oleshchuk.module19_kotlin.utils.FilmItemAnimation
@@ -67,17 +68,19 @@ class HomeFragment(private val position: Int) : Fragment() {
     /*************************************************************************/
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /*begin animation*/
+        FragmentAnimation.animateFragment(view, requireActivity(), position)
         /**/
         initFilms()
         initSearch()
         initPullToRefresh()
 
+        Log.d(AppConsts.TAG, "onViewCreated: onViewCreated refresh")
+
         /*подпишемся на изменения View Model*/
         viewModel.filmsLivaData.observe(viewLifecycleOwner, Observer<List<Film>>{
             filmsDb = it
         })
-        /**/
-        FragmentAnimation.animateFragment(view, requireActivity(), position)
     }
 
     /*************************************************************************/
