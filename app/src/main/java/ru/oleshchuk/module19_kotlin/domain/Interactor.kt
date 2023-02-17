@@ -26,7 +26,9 @@ class Interactor @Inject constructor (
                     call: Call<TmdbResultsDTO>,
                     response: Response<TmdbResultsDTO>
                 ) {
-                    callback.onSuccess(FilmsConverter.convertTmdbFilmsToFilms(response.body()?.tmdbFilms))
+                    val lists = FilmsConverter.convertTmdbFilmsToFilms(response.body()?.tmdbFilms)
+                    lists.forEach { film->mainRepo.putFilmToDb(film) }
+                    callback.onSuccess(lists)
                 }
 
                 override fun onFailure(call: Call<TmdbResultsDTO>, t: Throwable) {
@@ -36,6 +38,8 @@ class Interactor @Inject constructor (
             }
         )
     }
+
+    fun getFilmsFromDB() : List<Film> = mainRepo.getFilms()
 
     fun setPrefCallback( callback: (str:String)->Unit){
         preferenceProvider.setCallback(callback)
