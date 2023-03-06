@@ -7,4 +7,5 @@ object FragmentTags {
     const val TAG_FRAGMENT_LATER = "LaterFragment"
     const val TAG_FRAGMENT_COLLECTION = "CollectionFragment"
     const val TAG_FRAGMENT_DETAILS = "DetailsFragment"
+    const val TAG_FRAGMENT_SETTINGS = "SettingsFragment"
 }

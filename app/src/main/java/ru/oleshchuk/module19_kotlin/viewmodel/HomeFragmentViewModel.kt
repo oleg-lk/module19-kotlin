@@ -16,14 +16,17 @@ class HomeFragmentViewModel : ViewModel() {
 
     init {
         AppMovie.instance.appComponent.inject(this)
+        getFilms()
+    }
+    fun getFilms() {
         interactor.getFilmsFromApi(page = 1, callback = object : ApiCallback {
             override fun onSuccess(films: List<Film>) {
                 filmsLivaData.postValue(films)
             }
 
             override fun onFailure() {
+                filmsLivaData.postValue(interactor.getFilmsFromDB())
             }
-
         })
     }
 

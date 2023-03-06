@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_settings"
+    tools:context=".view.fragments.SettingsFragment">
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/settings_radio_group_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/white"
+            android:textSize="28sp" />
+
+        <RadioButton
+            android:id="@+id/rb_popular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/settings_rb_margin_start"
+            android:buttonTint="@color/white"
+            android:text="@string/settings_rb_popular"
+            android:textColor="@color/settings_rb_text_color"
+            android:textSize="@dimen/settings_rb_text_size" />
+
+        <RadioButton
+            android:id="@+id/rb_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/settings_rb_margin_start"
+            android:buttonTint="@color/white"
+            android:text="@string/settings_rb_top"
+            android:textColor="@color/settings_rb_text_color"
+            android:textSize="@dimen/settings_rb_text_size" />
+
+        <RadioButton
+            android:id="@+id/rb_soon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/settings_rb_margin_start"
+            android:buttonTint="@color/white"
+            android:text="@string/settings_rb_soon"
+            android:textColor="@color/settings_rb_text_color"
+            android:textSize="@dimen/settings_rb_text_size" />
+
+        <RadioButton
+            android:id="@+id/rb_playing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/settings_rb_margin_start"
+            android:buttonTint="@color/white"
+            android:text="@string/settings_rb_playing"
+            android:textColor="@color/settings_rb_text_color"
+            android:textSize="@dimen/settings_rb_text_size" />
+
+    </RadioGroup>
+
+</FrameLayout>

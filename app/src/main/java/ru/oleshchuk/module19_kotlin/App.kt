@@ -10,6 +10,8 @@ import ru.oleshchuk.module19_kotlin.data.MainRepository
 import ru.oleshchuk.module19_kotlin.data.TmdbApi
 import ru.oleshchuk.module19_kotlin.di.AppComponent
 import ru.oleshchuk.module19_kotlin.di.DaggerAppComponent
+import ru.oleshchuk.module19_kotlin.di.modules.PrefModule
+import ru.oleshchuk.module19_kotlin.di.modules.RemoteModule
 import ru.oleshchuk.module19_kotlin.domain.Interactor
 import java.util.concurrent.TimeUnit
 
@@ -23,7 +25,10 @@ class AppMovie : Application() {
         //Инициализируем экземпляр App, через который будем получать доступ к остальным переменным
         instance = this
         //Создаем компонент
-        appComponent = DaggerAppComponent.create()
+        appComponent = DaggerAppComponent.builder()
+            .remoteModule(RemoteModule())
+            .prefModule(PrefModule(this))
+            .build()
     }
 
     companion object {

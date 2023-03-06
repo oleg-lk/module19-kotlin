@@ -49,6 +49,11 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
         diffResult.dispatchUpdatesTo(this)
     }
 
+    fun clear(){
+        val sz = films.size
+        films.clear()
+        notifyItemRangeRemoved(0, sz)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmHolder {
         return FilmHolder(LayoutInflater.from(parent.context).inflate(R.layout.film_item, parent, false))
     }

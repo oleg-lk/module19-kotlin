@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import ru.oleshchuk.module19_kotlin.MainActivity
 import ru.oleshchuk.module19_kotlin.R
+import ru.oleshchuk.module19_kotlin.data.AppConsts
 import ru.oleshchuk.module19_kotlin.databinding.FragmentHomeBinding
 import ru.oleshchuk.module19_kotlin.domain.Film
 import ru.oleshchuk.module19_kotlin.utils.FilmItemAnimation
@@ -32,7 +33,6 @@ class HomeFragment(private val position: Int) : Fragment() {
     private var rvFilmsView : RecyclerView? = null
     /*HomeFragment viewModel*/
     private val viewModel by lazy {
-        //Log.d("lkLog", "viewModel lazy")
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
     private var filmsDb = listOf<Film>()
@@ -40,6 +40,7 @@ class HomeFragment(private val position: Int) : Fragment() {
          //Если придет такое же значение, то мы выходим из метода
          if(field==value) return
          field = value
+
          //Обновляем RV адаптер
          filmAdapter?.addFilms(field)
      }
@@ -54,20 +55,32 @@ class HomeFragment(private val position: Int) : Fragment() {
         return binding.root
     }
 
+    private fun initPullToRefresh(){
+        binding.swipeRefresh.setOnRefreshListener {
+            //filmAdapter?.clear()
+            //Делаем новый запрос фильмов на сервер
+            viewModel.getFilms()
+            //Убираем крутящееся колечко
+            binding.swipeRefresh.isRefreshing = false
+        }
+    }
+
     /*************************************************************************/
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /*begin animation*/
+        FragmentAnimation.animateFragment(view, requireActivity(), position)
         /**/
         initFilms()
         initSearch()
+        initPullToRefresh()
 
-        //Log.d("lkLog", "viewModel.filmsLivaData.observe")
+        Log.d(AppConsts.TAG, "onViewCreated: onViewCreated refresh")
+
         /*подпишемся на изменения View Model*/
         viewModel.filmsLivaData.observe(viewLifecycleOwner, Observer<List<Film>>{
             filmsDb = it
         })
-        /**/
-        FragmentAnimation.animateFragment(view, requireActivity(), position)
     }
 
     /*************************************************************************/
@@ -81,7 +94,6 @@ class HomeFragment(private val position: Int) : Fragment() {
         search?.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             //Этот метод отрабатывает при нажатии кнопки "поиск" на софт клавиатуре
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                //Log.d("lkLog", "onQueryTextSubmit")
                 return true
             }
             //Этот метод отрабатывает на каждое изменения текста
