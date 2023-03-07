@@ -1,7 +1,7 @@
 package ru.oleshchuk.module19_kotlin.view.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import ru.oleshchuk.module19_kotlin.domain.Film
+import ru.oleshchuk.module19_kotlin.data.entity.Film
 
 class FilmDiff(private val oldFilms: List<Film>, private val newFilms : List<Film>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {

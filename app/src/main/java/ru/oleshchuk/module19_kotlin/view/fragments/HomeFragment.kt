@@ -16,7 +16,7 @@ import ru.oleshchuk.module19_kotlin.MainActivity
 import ru.oleshchuk.module19_kotlin.R
 import ru.oleshchuk.module19_kotlin.data.AppConsts
 import ru.oleshchuk.module19_kotlin.databinding.FragmentHomeBinding
-import ru.oleshchuk.module19_kotlin.domain.Film
+import ru.oleshchuk.module19_kotlin.data.entity.Film
 import ru.oleshchuk.module19_kotlin.utils.FilmItemAnimation
 import ru.oleshchuk.module19_kotlin.utils.FragmentAnimation
 import ru.oleshchuk.module19_kotlin.view.adapter.FilmAdapter

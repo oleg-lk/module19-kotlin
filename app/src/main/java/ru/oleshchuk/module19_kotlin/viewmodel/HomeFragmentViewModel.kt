@@ -3,8 +3,9 @@ package ru.oleshchuk.module19_kotlin.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.oleshchuk.module19_kotlin.AppMovie
-import ru.oleshchuk.module19_kotlin.domain.Film
+import ru.oleshchuk.module19_kotlin.data.entity.Film
 import ru.oleshchuk.module19_kotlin.domain.Interactor
+import java.util.concurrent.Executors
 import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel() {
@@ -25,7 +26,9 @@ class HomeFragmentViewModel : ViewModel() {
             }
 
             override fun onFailure() {
-                filmsLivaData.postValue(interactor.getFilmsFromDB())
+                Executors.newSingleThreadExecutor().execute {
+                    filmsLivaData.postValue(interactor.getFilmsFromDB())
+                }
             }
         })
     }

@@ -1,11 +1,10 @@
 package ru.oleshchuk.module19_kotlin.domain
 
-import android.R
-import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.oleshchuk.module19_kotlin.data.*
+import ru.oleshchuk.module19_kotlin.data.entity.Film
 import ru.oleshchuk.module19_kotlin.providers.PreferenceProvider
 import ru.oleshchuk.module19_kotlin.utils.FilmsConverter
 import ru.oleshchuk.module19_kotlin.viewmodel.HomeFragmentViewModel
@@ -27,7 +26,7 @@ class Interactor @Inject constructor (
                     response: Response<TmdbResultsDTO>
                 ) {
                     val lists = FilmsConverter.convertTmdbFilmsToFilms(response.body()?.tmdbFilms)
-                    lists.forEach { film->mainRepo.putFilmToDb(film) }
+                    mainRepo.putFilmToDb(lists)
                     callback.onSuccess(lists)
                 }
 
