@@ -1,5 +1,6 @@
 package ru.oleshchuk.module19_kotlin.domain
 
+import androidx.lifecycle.LiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +28,7 @@ class Interactor @Inject constructor (
                 ) {
                     val lists = FilmsConverter.convertTmdbFilmsToFilms(response.body()?.tmdbFilms)
                     mainRepo.putFilmToDb(lists)
-                    callback.onSuccess(lists)
+                    callback.onSuccess()
                 }
 
                 override fun onFailure(call: Call<TmdbResultsDTO>, t: Throwable) {
@@ -38,11 +39,11 @@ class Interactor @Inject constructor (
         )
     }
 
-    fun getFilmsFromDB() : List<Film> = mainRepo.getFilms()
+    fun getFilmsFromDB() : LiveData<List<Film>> = mainRepo.getFilms()
 
-    fun setPrefCallback( callback: (str:String)->Unit){
-        preferenceProvider.setCallback(callback)
-    }
+    //fun setPrefCallback( callback: (str:String)->Unit){
+    //    preferenceProvider.setCallback(callback)
+    //}
 
     fun getDefCategoryFromPref(): String {
         return preferenceProvider.getDefCategory()

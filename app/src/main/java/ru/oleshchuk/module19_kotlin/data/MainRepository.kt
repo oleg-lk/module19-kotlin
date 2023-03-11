@@ -1,9 +1,7 @@
 package ru.oleshchuk.module19_kotlin.data
 
-import android.content.ContentValues
-import android.database.Cursor
+import androidx.lifecycle.LiveData
 import ru.oleshchuk.module19_kotlin.data.dao.FilmDao
-import ru.oleshchuk.module19_kotlin.db.DatabaseHelper
 import ru.oleshchuk.module19_kotlin.data.entity.Film
 import java.util.concurrent.Executors
 import javax.inject.Inject
@@ -18,7 +16,7 @@ class MainRepository @Inject constructor(private val filmDao: FilmDao) : BaseRep
         }
     }
 
-    fun getFilms(): List<Film> {
+    fun getFilms(): LiveData<List<Film>> {
         return filmDao.getCachedFilms()
     }
 }

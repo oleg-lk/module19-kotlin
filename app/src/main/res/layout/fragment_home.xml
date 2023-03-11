@@ -48,5 +48,11 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="201dp"
+        android:layout_height="200dp"
+        android:visibility="invisible"
+        android:layout_gravity="center"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
