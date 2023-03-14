@@ -12,7 +12,7 @@ import ru.oleshchuk.module19_kotlin.R
 import ru.oleshchuk.module19_kotlin.data.ApiConsts
 import ru.oleshchuk.module19_kotlin.data.Args
 import ru.oleshchuk.module19_kotlin.databinding.FragmentDetailsBinding
-import ru.oleshchuk.module19_kotlin.domain.Film
+import ru.oleshchuk.module19_kotlin.data.entity.Film
 
 class DetailsFragment : Fragment() {
 

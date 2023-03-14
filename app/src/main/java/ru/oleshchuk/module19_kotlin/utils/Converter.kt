@@ -1,7 +1,7 @@
 package ru.oleshchuk.module19_kotlin.utils
 
 import ru.oleshchuk.module19_kotlin.data.TmdbFilm
-import ru.oleshchuk.module19_kotlin.domain.Film
+import ru.oleshchuk.module19_kotlin.data.entity.Film
 
 object FilmsConverter {
     fun convertTmdbFilmsToFilms(tmdbFilms : List<TmdbFilm>?) : List<Film>{
