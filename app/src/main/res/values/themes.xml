@@ -17,4 +17,7 @@
         <item name="android:textColorHint">@android:color/black</item>
 
     </style>
+    <style name="ProgressBarStyle">
+        <item name="colorAccent">@android:color/holo_red_dark</item>
+    </style>
 </resources>

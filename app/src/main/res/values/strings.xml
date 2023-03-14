@@ -18,4 +18,8 @@
     <string name="settings_rb_soon">Скоро</string>
     <string name="settings_rb_playing">В кинотеатрах</string>
     <string name="settings_rb_header">Подборка на главном экране</string>
+    <string name="permission_storage">Нет разрешения. Пожалуйста, предоставьте разрешение</string>
+    <string name="download_to_galary">Сохранено в галерею</string>
+    <string name="open">В галерею</string>
+    <string name="load_error">Ошибка загрузки</string>
 </resources>
