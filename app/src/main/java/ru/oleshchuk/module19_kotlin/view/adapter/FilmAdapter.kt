@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import ru.oleshchuk.module19_kotlin.R
 import ru.oleshchuk.module19_kotlin.data.ApiConsts
 import ru.oleshchuk.module19_kotlin.databinding.FilmItemBinding
-import ru.oleshchuk.module19_kotlin.domain.Film
+import ru.oleshchuk.module19_kotlin.data.entity.Film
 
 class FilmAdapter(private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<FilmAdapter.FilmHolder>() {
 

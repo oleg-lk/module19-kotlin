@@ -1,12 +1,13 @@
 package ru.oleshchuk.module19_kotlin.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,9 +15,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import ru.oleshchuk.module19_kotlin.MainActivity
 import ru.oleshchuk.module19_kotlin.R
-import ru.oleshchuk.module19_kotlin.data.AppConsts
+import ru.oleshchuk.module19_kotlin.data.entity.Film
 import ru.oleshchuk.module19_kotlin.databinding.FragmentHomeBinding
-import ru.oleshchuk.module19_kotlin.domain.Film
 import ru.oleshchuk.module19_kotlin.utils.FilmItemAnimation
 import ru.oleshchuk.module19_kotlin.utils.FragmentAnimation
 import ru.oleshchuk.module19_kotlin.view.adapter.FilmAdapter
@@ -27,6 +27,9 @@ import ru.oleshchuk.module19_kotlin.viewmodel.HomeFragmentViewModel
  * A simple [Fragment] subclass.
  */
 class HomeFragment(private val position: Int) : Fragment() {
+
+    constructor() : this(0) {
+    }
 
     lateinit var binding: FragmentHomeBinding
     private var filmAdapter : FilmAdapter? = null
@@ -49,7 +52,7 @@ class HomeFragment(private val position: Int) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -75,12 +78,18 @@ class HomeFragment(private val position: Int) : Fragment() {
         initSearch()
         initPullToRefresh()
 
-        Log.d(AppConsts.TAG, "onViewCreated: onViewCreated refresh")
-
         /*подпишемся на изменения View Model*/
-        viewModel.filmsLivaData.observe(viewLifecycleOwner, Observer<List<Film>>{
+        viewModel.liveFilmsData.observe(viewLifecycleOwner, {
             filmsDb = it
         })
+
+        viewModel.liveShowProgressBar.observe(viewLifecycleOwner){
+            binding.progressBar.isVisible = it
+        }
+
+        viewModel.liveShowError.observe(viewLifecycleOwner){
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
     }
 
     /*************************************************************************/

@@ -9,7 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import ru.oleshchuk.module19_kotlin.data.Args
 import ru.oleshchuk.module19_kotlin.data.FragmentTags
 import ru.oleshchuk.module19_kotlin.databinding.ActivityMainBinding
-import ru.oleshchuk.module19_kotlin.domain.Film
+import ru.oleshchuk.module19_kotlin.data.entity.Film
 import ru.oleshchuk.module19_kotlin.view.fragments.*
 
 class MainActivity : AppCompatActivity() {
