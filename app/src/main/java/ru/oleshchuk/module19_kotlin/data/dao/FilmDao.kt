@@ -12,7 +12,7 @@ import ru.oleshchuk.module19_kotlin.data.entity.Film
 interface FilmDao {
     //Запрос на всю таблицу
     @Query("SELECT * FROM cached_films")
-    fun getCachedFilms() : LiveData<List<Film>>
+    fun getCachedFilms() : List<Film>
 
     //Кладём списком в БД, в случае конфликта перезаписываем
     @Insert(onConflict = OnConflictStrategy.REPLACE)

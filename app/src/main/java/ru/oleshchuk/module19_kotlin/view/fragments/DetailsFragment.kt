@@ -1,7 +1,13 @@
 package ru.oleshchuk.module19_kotlin.view.fragments
 
+import android.Manifest
+import android.content.ContentValues
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.transition.Fade
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +24,8 @@ import kotlinx.coroutines.*
 import ru.oleshchuk.module19_kotlin.R
 import ru.oleshchuk.module19_kotlin.data.ApiConsts
 import ru.oleshchuk.module19_kotlin.data.Args
+import ru.oleshchuk.module19_kotlin.data.entity.Film
 import ru.oleshchuk.module19_kotlin.databinding.FragmentDetailsBinding
-import ru.oleshchuk.module19_kotlin.domain.Film
 import ru.oleshchuk.module19_kotlin.viewmodel.DetailsFragmentViewModel
 
 class DetailsFragment : Fragment() {

@@ -1,40 +1,44 @@
 package ru.oleshchuk.module19_kotlin.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.launch
 import ru.oleshchuk.module19_kotlin.AppMovie
 import ru.oleshchuk.module19_kotlin.data.entity.Film
 import ru.oleshchuk.module19_kotlin.domain.Interactor
-import ru.oleshchuk.module19_kotlin.utils.SingleLiveEvent
 import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel() {
-    val liveFilmsData : LiveData<List<Film>>
-    val liveShowProgressBar = MutableLiveData<Boolean>()
-    val liveShowError = SingleLiveEvent<String>()
+
+    val errorChanel = Channel<Boolean>(Channel.CONFLATED)
 
     /*get from App*/
     @Inject
-    lateinit var interactor : Interactor
+    lateinit var interactor: Interactor
 
     init {
         AppMovie.instance.appComponent.inject(this)
-        liveFilmsData = interactor.getFilmsFromDB()
-        getFilms()
     }
-    fun getFilms() {
-        liveShowProgressBar.postValue(true)
+
+    //запрос фильмов с сервера или чтени из внутренней бд
+    fun getFilms(filmBackFunc: (List<Film>) -> Unit) {
+
         interactor.getFilmsFromApi(page = 1, callback = object : ApiCallback {
             override fun onSuccess() {
-                liveShowProgressBar.postValue(false)
+                filmBackFunc(interactor.getFilmsFromCache())
             }
 
             override fun onFailure() {
-                liveShowProgressBar.postValue(false)
-                liveShowError.postValue("Fail")
+                filmBackFunc(interactor.getFilmsFromCache())
+                CoroutineScope(Dispatchers.IO).launch {
+                    errorChanel.send(true)
+                }
             }
-        })
+        }
+        )
     }
 
     interface ApiCallback {
