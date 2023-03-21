@@ -9,10 +9,13 @@ import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import ru.oleshchuk.module19_kotlin.MainActivity
 import ru.oleshchuk.module19_kotlin.R
 import ru.oleshchuk.module19_kotlin.data.entity.Film
@@ -34,6 +37,9 @@ class HomeFragment(private val position: Int) : Fragment() {
     lateinit var binding: FragmentHomeBinding
     private var filmAdapter : FilmAdapter? = null
     private var rvFilmsView : RecyclerView? = null
+
+    private val uiScope = CoroutineScope(Dispatchers.Main)
+
     /*HomeFragment viewModel*/
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
@@ -60,11 +66,13 @@ class HomeFragment(private val position: Int) : Fragment() {
 
     private fun initPullToRefresh(){
         binding.swipeRefresh.setOnRefreshListener {
-            //filmAdapter?.clear()
-            //Делаем новый запрос фильмов на сервер
-            viewModel.getFilms()
-            //Убираем крутящееся колечко
-            binding.swipeRefresh.isRefreshing = false
+            viewModel.getFilms {
+                uiScope.launch {
+                    filmsDb = it
+                    //Убираем крутящееся колечко
+                    binding.swipeRefresh.isRefreshing = false
+                }
+            }
         }
     }
 
@@ -78,17 +86,18 @@ class HomeFragment(private val position: Int) : Fragment() {
         initSearch()
         initPullToRefresh()
 
-        /*подпишемся на изменения View Model*/
-        viewModel.liveFilmsData.observe(viewLifecycleOwner, {
-            filmsDb = it
-        })
-
-        viewModel.liveShowProgressBar.observe(viewLifecycleOwner){
-            binding.progressBar.isVisible = it
+        //CoroutineScope(Dispatchers.Main).launch{
+        binding.progressBar.isVisible = true
+        viewModel.getFilms {
+            uiScope.launch {
+                filmsDb = it
+                binding.progressBar.isVisible = false
+            }
         }
-
-        viewModel.liveShowError.observe(viewLifecycleOwner){
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        uiScope.launch {
+            for (el in viewModel.errorChanel){
+                Toast.makeText(requireContext(), getString(R.string.message_no_connection), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -135,19 +144,9 @@ class HomeFragment(private val position: Int) : Fragment() {
         })
     }
 
-    /*************************************************************************/
-    override fun onResume() {
-        super.onResume()
-    }
-
-    /*************************************************************************/
-    override fun onPause() {
-        super.onPause()
-    }
-
-    /*************************************************************************/
-    override fun onStart() {
-        super.onStart()
+    override fun onDestroy() {
+        super.onDestroy()
+        uiScope.cancel()
     }
 
     /*************************************************************************/

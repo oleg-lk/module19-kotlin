@@ -18,3 +18,14 @@ object FilmsConverter {
         return films
     }
 }
+
+fun List<TmdbFilm>.toListFilm() : List<Film>{
+    return List<Film>(this.size){
+            val tmdbFilm = this[it]
+            Film(name = tmdbFilm.title,
+                posterId = tmdbFilm.poster_path,
+                desc = tmdbFilm.overview,
+                rate = tmdbFilm.vote_average, isFav = false)
+        }
+
+}

@@ -45,7 +45,6 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
         val diffResult = DiffUtil.calculateDiff(FilmDiff(films, newFilms))
         films.clear()
         films.addAll(newFilms)
-        //notifyDataSetChanged()
         diffResult.dispatchUpdatesTo(this)
     }
 
