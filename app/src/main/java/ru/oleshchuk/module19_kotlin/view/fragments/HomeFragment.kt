@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.oleshchuk.module19_kotlin.MainActivity
@@ -24,6 +25,7 @@ import ru.oleshchuk.module19_kotlin.utils.FragmentAnimation
 import ru.oleshchuk.module19_kotlin.view.adapter.FilmAdapter
 import ru.oleshchuk.module19_kotlin.view.adapter.FilmDecoration
 import ru.oleshchuk.module19_kotlin.viewmodel.HomeFragmentViewModel
+import java.util.concurrent.TimeUnit
 
 /**
  * A simple [Fragment] subclass.
@@ -96,52 +98,58 @@ class HomeFragment(private val position: Int) : Fragment() {
                 binding.progressBar.isVisible = false
             }
 
-        val disposeError = viewModel.
-            getError()
+        val disposeError = viewModel.getError()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-            Toast.makeText(
-                requireContext(),
-                getString(R.string.message_no_connection),
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.message_no_connection),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         compositeDisposable.addAll(disposeFilms, disposeError)
     }
 
     /*************************************************************************/
     //search menu
     private fun initSearch() {
-        val search = view?.findViewById<SearchView>(R.id.search)
-        search?.setOnClickListener {
+        binding.search.setOnClickListener {
             (it as SearchView).isIconified = false
         }
 
-        search?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            //Этот метод отрабатывает при нажатии кнопки "поиск" на софт клавиатуре
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return true
-            }
-
-            //Этот метод отрабатывает на каждое изменения текста
-            override fun onQueryTextChange(p0: String?): Boolean {
-                if ((p0 == null) || p0.isEmpty()) {
-                    //all films
-                    filmAdapter?.addFilms(filmsDb)
+        val searchDisp = Observable.create<String?> {
+            emiter ->
+            binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                //Этот метод отрабатывает при нажатии кнопки "поиск" на софт клавиатуре
+                override fun onQueryTextSubmit(p0: String?): Boolean {
                     return true
                 }
-                //filter by names
-                val filmList = filmsDb.filter { film ->
-                    if (film.name != null)
-                        film.name.contains(p0, true)
-                    else
-                        false
+                //Этот метод отрабатывает на каждое изменения текста
+                override fun onQueryTextChange(p0: String?): Boolean {
+                    if ((p0 == null) || p0.isEmpty()) {
+                        //all films
+                        emiter.onNext(String())
+                        return true
+                    }
+                    //filter by names
+                    emiter.onNext(p0)
+                    return true
                 }
-                //true if the query has been handled by the listener
-                filmAdapter?.addFilms(filmList)
-                return true
+            })
+        }.debounce(1, TimeUnit.SECONDS)
+            .flatMap {
+                if (it.isEmpty()) {
+                    return@flatMap Observable.just(filmsDb)
+                } else {
+                    return@flatMap viewModel.searchFilmFromApi(it)
+                }
             }
-        })
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { response -> filmAdapter?.addFilms(response) },
+                { t -> Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show() })
+
+        compositeDisposable.add(searchDisp)
     }
 
     /***********************************************************************/

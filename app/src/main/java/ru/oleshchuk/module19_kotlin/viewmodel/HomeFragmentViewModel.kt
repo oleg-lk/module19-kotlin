@@ -27,5 +27,7 @@ class HomeFragmentViewModel : ViewModel() {
         return interactor.getFilmsFromApi(page = 1)
     }
 
-
+    fun searchFilmFromApi(queryStr: String) : Observable<List<Film>>{
+        return interactor.searchFilmFromApi(queryStr)
+    }
 }

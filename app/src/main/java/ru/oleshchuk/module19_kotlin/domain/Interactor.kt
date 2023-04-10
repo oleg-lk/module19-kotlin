@@ -1,6 +1,8 @@
 package ru.oleshchuk.module19_kotlin.domain
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import retrofit2.Call
 import retrofit2.Callback
@@ -60,6 +62,17 @@ class Interactor @Inject constructor(
                 }
             )
         }
+    }
+
+    fun searchFilmFromApi(queryStr: String) : Observable<List<Film>>{
+        val observaleListFilms = retrofitService.searchFilm(
+            api_key = Keys.KEY_API_TIMDB, language = "ru-RU", page = 1, query = queryStr
+        )
+            .subscribeOn(Schedulers.computation())
+            .map {
+            tmdbDto->tmdbDto.tmdbFilms.toListFilm()
+        }
+        return observaleListFilms
     }
 
     fun getDefCategoryFromPref(): String {

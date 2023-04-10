@@ -46,6 +46,7 @@ class FilmAdapter(private val onItemClickListener: OnItemClickListener) : Recycl
         films.clear()
         films.addAll(newFilms)
         diffResult.dispatchUpdatesTo(this)
+        notifyDataSetChanged()
     }
 
     fun clear(){
