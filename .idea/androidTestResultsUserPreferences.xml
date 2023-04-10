@@ -8,9 +8,11 @@
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
                 <map>
+                  <entry key="809678b9" value="120" />
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_6_API_29" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="Xiaomi&#10; Mi MIX 2S" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>

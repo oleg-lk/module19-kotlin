@@ -2,6 +2,7 @@ package ru.oleshchuk.module19_kotlin.data
 
 import ru.oleshchuk.module19_kotlin.data.dao.FilmDao
 import ru.oleshchuk.module19_kotlin.data.entity.Film
+import java.util.concurrent.Executors
 import javax.inject.Inject
 
 interface BaseRepository
